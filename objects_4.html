@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <script>
+        let employee = {
+            name: "Tommy",
+            age: 25
+        }
+
+        function PrintObject(obj){
+            for(let prop in obj)
+                console.log(`Prop: ${prop}, Value: ${obj[prop]}`);
+            obj.name = "Jimmy";
+        }
+
+        PrintObject(employee);
+        console.log(employee);
+        
+        // function - return object
+        function CreateEmployee(n, a){
+            return {
+                name: n,
+                age: a
+            };
+        }
+
+        // function - constructor of object
+        function Employee(n, a){
+            this.name = n;
+            this.age = a;
+            this.info = function(){
+                console.log(`Name: ${this.name}, Age: ${this.age}`);
+            }
+        }
+
+        let manager = new Employee("Penny", 29);
+        manager.info();
+
+        console.log(employee instanceof Employee);
+        console.log(manager instanceof Employee);
+        
+
+
+        let bobby = CreateEmployee("Bobby", 32);
+        console.log(bobby);
+        
+        function ArrayInfo(array){
+            let min = array[0];
+            let max = array[0];
+            let avg = 0;
+            for(let item of array)
+            {
+                if(item < min) min = item;
+                if(item > max) max = item;
+                avg += item;
+            }
+            return {
+                "min": min,
+                "max": max,
+                "avg": avg / array.length
+            }
+        }
+
+        let array = [1, 2 ,3 ,4, 5, 6, 7, 8, 9];
+        let info = ArrayInfo(array);
+        console.log(`Min = ${info.min}, Max = ${info.max}, Avg = ${info.avg}`);
+        
+
+
+    </script>
+</body>
+</html>

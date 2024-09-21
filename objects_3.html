@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        let employee = {
+            name: "Bobby",
+            age: 28,
+            company: {
+                title: "Yandex",
+                address: {
+                    city: "Moscow",
+                    street: "Tverskaya"
+                }
+            },
+            languages: ["C++", "C#", "Java", "Php"],
+            projects: [
+                { 
+                    title: "Mobile App",
+                    timing: 10
+                },
+                { 
+                    title: "Web site",
+                    timing: 5
+                },
+                { 
+                    title: "Desktop App",
+                    timing: 12
+                }
+            ]
+        }
+        //console.log(employee.company.address.city);
+        //console.log(employee["company"]["address"]["city"]);
+
+        // for(let lang of employee.languages)
+        //     console.log(lang);
+
+        // for(let proj of employee.projects)
+        // {
+        //     for(let prop in proj)
+        //         console.log(`${prop}, => ${proj[prop]}`);
+        // }
+            
+        // let user = {
+        //     name: "Lenny",
+        //     address: {
+        //         city: "Moscow"
+        //     }
+        // }
+
+        //for(let prop of Object.entries(employee))
+        //for(let prop of Object.keys(employee))
+        for(let prop of Object.values(employee))
+            console.log(`Prop name ${prop}`);
+            
+
+
+
+
+
+        //let person = user;
+        // let person = Object.assign({}, user);
+        // person.name = "Jimmy";
+        // person.address.city = "St.Peterburg";
+
+        // console.log(user);
+
+        // let bob = {name: "Bobby"};
+        // let bobby = {name: "Bobby"};
+
+        // console.log(bob == bobby);
+        // console.log(bob === bobby);
+
+        // bob.age = 23;
+
+        // //if("age" in bob)
+        // if(bob.hasOwnProperty("age"))
+        //     console.log("property age exists");
+        // else
+        //     console.log("property age not exists");
+            
+
+        
+
+        
+        
+    </script>
+</body>
+</html>

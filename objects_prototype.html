@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+
+        let user = {
+            name: "Bobby"
+        };
+
+        function Employee(name, age){
+            this.name = name;
+            this.age = age;
+            // this.info = function(){
+            //     console.log(`name: ${this.name}, age: ${this.age}`);
+            // }
+        }
+
+        Employee.prototype.info = function(){
+            console.log(`name: ${this.name}, age: ${this.age}, city: ${this.city}`);
+        }
+        Employee.prototype.city = "Moscow";
+
+        let employee = new Employee("Bobby", 27);
+        console.log(Employee.prototype);
+        console.log(employee);
+        employee.info();
+        
+
+        // console.log(user);
+        // console.log(user.__proto__);
+        // console.log(Object.getPrototypeOf(user));
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        // function func(){
+        //     let number = 100;
+        //     console.log(this.number);
+        // }
+
+        // var number = 200;
+        // func();
+
+        // let user = {
+        //     number: 100,
+        //     func: function(){
+        //         console.log(this.number);
+        //     }
+        // };
+
+        // user.func();
+    
+    // var name = "Global name";
+
+    // function hello(){
+    //     var name = "Anonim";
+    //     console.log("Hello " + this.name);
+    // }
+
+    // let user = {
+    //     name: "Bobby",
+    //     sayHello: function(){
+    //         console.log("Hello " + this.name);
+    //     }
+    // }
+
+    // let funcHello = user.sayHello;
+
+    // hello();
+    // user.sayHello();
+    // funcHello();
+
+    function hello(){
+        console.log("Hello " + this.name);
+    }
+
+    var name = "Global name";
+
+    var person = {
+        name: "Tommy"
+    }
+
+    hello.apply(person);
+
+    let helloBind = hello.bind(person);
+
+    helloBind();
+
+
+    </script>
+</body>
+</html>

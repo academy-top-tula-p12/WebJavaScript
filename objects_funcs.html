@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        // function hello(){
+        //     console.log("Hello");
+        // }
+
+        let hello = new Function("", "console.log('Hello');")
+        hello();
+        let sum = new Function("a, b", "return a + b;");
+        console.log(sum(10, 20));
+        console.log(sum.call(this, 10, 20));
+        console.log(sum.apply(this, [10, 20]));
+
+        //console.log(hello.__proto__);
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+        let obj1 = {};
+        let obj2 = new Object();
+
+        let user = {
+            name: "Bobby",
+            age: 27,
+            "mobile phone": "+7 999 123-45-67",
+
+            sayHello: () => console.log("Hello people!"),
+            
+            
+        }
+        
+
+        console.log(user.name);
+        console.log(user["mobile phone"]);
+        user.sayHello();
+
+        user.sayGoodby = () => console.log("Good by people!");
+        user.sayGoodby();
+
+        user.Info = function(){ console.log("Name: " + this.name + ", Age:" + this.age); };
+        user.Info();
+        
+        let propName = "address";
+        user[propName] = "Moscow";
+
+        let person = {
+            [propName]: "Kaluga"
+        }
+        
+        console.log(user);
+
+        delete user.sayHello;
+        delete user["mobile phone"];
+        
+        console.log(user);
+
+
+        let userData = [["login", "bobby"], ["password", "qwerty"]];
+        let userNew = Object.fromEntries(userData);
+
+        console.log(userNew);
+
+
+        var company = "Yandex";
+
+        function CompanyInfo(){
+            let company = "Ozon";
+            console.log(this.company);
+        }
+
+        CompanyInfo();
+        
+        
+    </script>
+</body>
+</html>
