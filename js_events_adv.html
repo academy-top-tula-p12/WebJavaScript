@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 100px;
+            height: 100px;
+            margin: 20px;
+            background-color: blueviolet;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <button id="creator">Create Box</button>
+    <div class="wrap"></div>
+
+    <script>
+        let btn = document.getElementById("creator");
+        btn.addEventListener("click", (e) =>{
+            let wrap = document.querySelector(".wrap");
+            let element = document.createElement("div");
+            
+            element.classList.add("box");
+            element.addEventListener("click", boxHandler);
+
+
+            wrap.append(element);
+        });
+
+        function boxHandler(e){
+            this.remove();
+        }
+    </script>
+</body>
+</html>

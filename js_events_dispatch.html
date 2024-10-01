@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 100px;
+            height: 100px;
+            background-color: deeppink;
+            display: inline-block;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <button id="creator">Create Box</button><br>
+    <button id="dispatch">Dispatch Create</button>
+    <div id="wrap"></div>
+
+    <script>
+        let creator = document.getElementById("creator");
+        let dispatch = document.getElementById("dispatch");
+        let wrap = document.getElementById("wrap");
+
+        creator.addEventListener("click", (e) =>{
+            let element = document.createElement("div");
+            element.classList.add("box");
+            wrap.append(element);
+        });
+
+        
+
+        let obj = document.createElement("span");
+        let event = new Event("myevent");
+        obj.addEventListener("myevent", (e) =>{
+            console.log("my event dispatch!");
+        });
+
+        dispatch.addEventListener("click", (e) =>{
+            // let event = new MouseEvent("click");
+            // creator.dispatchEvent(event);
+
+            obj.dispatchEvent(event);
+        });
+
+
+    </script>
+</body>
+</html>

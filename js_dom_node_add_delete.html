@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #wrap{
+            background-color: aqua;
+        }
+
+        div{
+            background-color: red;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <ol id="wrap">
+        <li>Item 1</li>
+        <li id="li2">Item 2</li>
+        <li>Item 3</li>
+        <li>Item 4</li>
+    </ol>
+
+    <ul id="ulfr">
+
+    </ul>
+    
+    <script>
+        let wrap = document.getElementById("wrap");
+
+        // let li_append = document.createElement("li");
+        // li_append.innerHTML = "<i>Child append</i>";
+        // wrap.append(li_append);
+        wrap.insertAdjacentHTML("beforeend", "<li>Child append</li>");
+
+        // let li_prepend = document.createElement("li");
+        // li_prepend.innerText = "Child prepend";
+        // wrap.prepend(li_prepend);
+        wrap.insertAdjacentHTML("afterbegin", "<li>Child prepend</li>");
+
+        // let div_before = document.createElement("div");
+        // div_before.innerText = "Sibling before";
+        // wrap.before(div_before);
+        wrap.insertAdjacentHTML("beforebegin", "<div>Sibling before</div>");
+
+        // let div_after = document.createElement("div");
+        // div_after.innerText = "Sibling after";
+        // wrap.after(div_after);
+        wrap.insertAdjacentHTML("afterend", "<div>Sibling after</div>");
+
+        // let div_replace = document.createElement("div");
+        // div_replace.innerText = "Element replace";
+        // wrap.replaceWith(div_replace);
+
+        let li2 = document.getElementById("li2");
+        li2.remove();
+
+        let wrap2 = wrap.cloneNode(true);
+        let b = document.getElementsByTagName("body")[0];
+        let last = b.append(wrap2);
+
+        /*
+            children
+            append - в конец
+            prepend - в начало
+
+            sibling
+            before - перед эелементом
+            after - после элемента
+
+            replaceWith
+
+
+            FOR insertAdjasentHTML
+            beforebegin (before)
+            afterbegin (prepend)
+            beforeend (append)
+            afterend (after)
+
+
+        */
+
+        function getItems(count){
+            let fragment = new DocumentFragment();
+            for(i = 0; i < count; i++){
+                let li = document.createElement("li");
+                li.innerText = "Item " + (i + 1);
+                fragment.append(li);
+            }
+            return fragment;
+        }
+
+        let ulfr = document.getElementById("ulfr");
+        console.log(ulfr);
+        
+        ulfr.append(getItems(5));
+
+    </script>
+</body>
+</html>

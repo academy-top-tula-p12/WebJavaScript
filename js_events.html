@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .div-btn{
+            width: 100px;
+            height: 100px;
+            background-color: blueviolet;
+        }
+    </style>    
+</head>
+<body>
+    
+    <!-- <div class="div-btn" onclick="divBtnHandler()"></div> -->
+    <div class="div-btn"></div>
+    
+
+    <script>
+        /*
+            mouses events
+            keybord events
+            lifeloop events
+            inputs events
+
+            DOM events
+            errors events
+            tach events
+        */
+
+        /*
+        Event object:
+            target (subject)
+            timeStamp
+            type
+            currentTarget
+            bubbles - true восходящее
+        */
+
+        function divBtnHandler(e){
+            console.log("div on click!");
+        }
+
+        var count = 0;
+
+        function divBtnAlterHandler(e){
+            count++;
+
+            if(count > 3){
+                e.preventDefault();
+            }
+            else{
+                this.style.backgroundColor = "darkblue";
+                console.log(`Event target: ${e.target}`);
+                console.log(`Event time: ${e.timeStamp}`);
+                console.log(`Event type: ${e.type}`);
+                console.log(`Event is bubbles: ${e.bubble}`);
+            }
+        }
+
+        let divBtn = document.querySelector(".div-btn");
+        // divBtn.onclick = divBtnHandler;
+        // divBtn.onclick = divBtnAlterHandler;
+        // divBtn.addEventListener("click", (e) => console.log("lambda div on click!"));
+        // divBtn.addEventListener("click", divBtnHandler);
+        divBtn.addEventListener("click", divBtnAlterHandler);
+
+    </script>
+</body>
+</html>

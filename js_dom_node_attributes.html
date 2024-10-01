@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .box-red{
+            
+            background-color: darkred;
+        }
+
+        .box-border{
+            border: 5px magenta solid;
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <a href="https://yandex.ru" 
+       style="color: red; 
+             text-decoration: underline;
+             font-size: 20px;"
+    >Yandex</a>
+    <div id="main" class="box-border" lang="ru"></div>
+    
+    
+    <script>
+        /*
+        getAttribute(attr)
+        createAttribute(attr)
+        setAttribute(attr, value)
+        removeAttribute(attr)
+        */
+
+        let divMain = document.getElementById("main");
+        console.log(divMain.getAttribute("id"));
+        console.log(divMain.id);
+
+        console.log(divMain.getAttribute("class"));
+        console.log(divMain.className);
+
+        console.log(divMain.getAttribute("lang"));
+        console.log(divMain.lang);
+        //console.log(divMain.getAttribute("style"));
+
+        let ancore = document.querySelector("a");
+        console.log(ancore.getAttribute("href"));
+        console.log(ancore.href);
+
+        //prompt("continue");
+
+        //divMain.setAttribute("class", "box-red");
+        //ancore.removeAttribute("href")
+
+        divMain.addEventListener("click", (e) =>{
+            e.target.classList.toggle("box-red");
+        });
+
+        //divMain.classList.add("box-red");
+
+        for(let c of divMain.classList)
+            console.log(`class name: ${c}`);
+            
+        
+        ancore.style.color = "green";
+        ancore.style.fontSize = "12px";
+    </script>
+</body>
+</html>

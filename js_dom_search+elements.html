@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1></h1>
+    <p id="p1"></p>
+    <p class="c1"></p>
+    <div class="c1"></div>
+    <p></p>
+    <div></div>
+    <ul>
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+        <li>Item 4</li>
+        <li>Item 5</li>
+    </ul>
+
+    <script>
+        let itemId = document.getElementById("p1");
+        let itemsTagName = document.getElementsByTagName("h1");
+        itemsTagName[0].innerText = "Hello World";
+
+        let itemsClassName = document.getElementsByClassName("c1");
+        for(item of itemsClassName)
+            item.innerText = "Element of Class C1";
+
+        // getElementsByName
+
+        let queryH1 = document.querySelector("h1");
+        let queryP1 = document.querySelector("#p1");
+        let queryC1 = document.querySelector(".c1");
+        queryC1.style.color = "red";
+
+        let itemsQueryH1 = document.querySelectorAll("h1");
+        let itemsQueryC1 = document.querySelectorAll(".c1");
+
+        let ul = document.querySelector("ul");
+        let lis = ul.querySelectorAll("li");
+
+        for(li of lis)
+            console.log(li.innerText);
+            
+
+    </script>
+</body>
+</html>

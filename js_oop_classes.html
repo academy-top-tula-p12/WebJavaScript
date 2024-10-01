@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        class Employee{
+            static #globalId = 0;
+            #id;
+            #name;
+            #age;
+
+            constructor(name = "Anonim", age = 0){
+                this.#name = name;
+                this.#age = age;
+                this.#id = ++Employee.#globalId;
+            }
+
+            info(){
+                console.log(`Id: ${this.#id} - Name: ${this.#name}, Age: ${this.#age}`);
+                
+            }
+
+            setName(name){
+                this.#name = name;
+            }
+
+            getName(){
+                return this.#name;
+            }
+
+            set age(value){
+                if(value > 0 && value < 100)
+                    this.#age = value;
+                else throw "invalid employye's age";
+            }
+
+            get age(){
+                return this.#age;
+            }
+
+            get toString(){
+                return this.#name + " " + this.#age;
+            }
+        }
+
+        const User = class{
+            constructor(login = "admin", password = "qwerty"){
+                this.login = login;
+                this.password = password;
+            }
+
+            info(){
+                console.log(`Login: ${this.login}, Password: ${this.password}`);
+            }
+        };
+
+        try{
+            let employee = new Employee();
+            employee.setName("Bobby");
+            employee.age = -25;
+            employee.info();
+        }
+        catch(ex){
+            console.log(ex);
+            
+        }
+        
+        
+        let manager = new Employee("Denny", 29);
+        manager.info();
+        console.log(manager.toString);
+        
+
+        let user = new User();
+        user.info();
+
+
+        class Shape{
+            x = 0;
+            y = 0;
+            constructor(x = 0, y = 0){
+                this.x = x;
+                this.y = y;
+            }
+            position(){
+                return `x = ${this.x}, y = ${this.y}`;
+            }
+        }
+
+        class Rectangle extends Shape{
+            width;
+            height;
+
+            constructor(x = 0, y = 0, width = 0, height = 0){
+                super(x, y);
+                this.width = width;
+                this.height = height;
+            }
+
+            position(){
+                return super.position() + `, width = ${this.width}, height = ${this.height}`;
+            }
+        }
+
+        let rect = new Rectangle(10, 20, 100, 300);
+        console.log(rect.position());
+
+        console.log(rect instanceof Rectangle);
+        console.log(rect instanceof Shape);
+        console.log(rect instanceof Employee);
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        function User(name, age, salary){
+            this.name = name;
+            this.age = age;
+            this.salary = salary;
+        }
+
+        let users = [
+            new User("Bobby", 29, 100000),
+            new User("Tommy", 37, 120000),
+            new User("Jimmy", 19, 110000),
+            new User("Sammy", 21, 105000),
+            new User("Billy", 34, 125000),
+            new User("Kenny", 22, 142000),
+            new User("Molly", 18, 111000),
+            new User("Debby", 38, 121000),
+            new User("Timmy", 25, 100000),
+            new User("Jonny", 35, 130000),
+        ];
+
+        let result = users.filter(u => u.age >= 30)
+                          .map(u => { return {name: u.name, salary: u.salary}})
+                          //.forEach(u => console.log(u.name));
+                          //.reduce((prev, curr) => prev += curr.salary, 0);
+                          .find(u => u.salary > 120000);
+        console.log(result);
+        
+             
+    </script>
+</body>
+</html>

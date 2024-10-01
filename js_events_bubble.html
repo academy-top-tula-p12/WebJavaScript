@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box-red{
+            width: 200px;
+            height: 200px;
+            background-color: red;
+        }
+
+        #box-blue{
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="box-red">
+        <div id="box-blue"></div>
+    </div>
+    
+    <script>
+        let boxRed = document.getElementById("box-red");
+        let boxBlue = document.getElementById("box-blue");
+        let body = document.getElementsByTagName("body")[0];
+
+        body.addEventListener("click", () => console.log("Body clicked"), true);
+
+        boxRed.addEventListener("click", (e) => {
+            console.log("Box Red clicked");
+            //e.stopPropagation();
+        }, true);
+
+        boxBlue.addEventListener("click", (e) => {
+            console.log("Box Blue clicked");
+            //e.stopPropagation();
+        }, true);
+    </script>
+</body>
+</html>

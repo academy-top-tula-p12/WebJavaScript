@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+         #tablo{
+            padding: 10px;
+            background-color:blueviolet;
+            position: absolute;
+            left: 400px;
+            top: 400px;
+         }
+         #wrap{
+            width: 100%;
+            height: 100vh;
+            background-color: beige;
+        }
+    </style>
+</head>
+<body>
+    <div id="tablo"></div>
+    <!-- <div id="wrap"></div> -->
+    <script>
+        /*
+            KeyboardEvent
+                altKey
+                ctrlKey
+                shiftKey
+                metaKey
+
+                key - character of key
+                code - code of key / "A" -> "KeyA"
+        */
+
+        var pleft = 400;
+        var ptop = 400;
+
+        tablo.style.left = "" + pleft + "px";
+        tablo.style.top = "" + ptop + "px";
+
+        window.addEventListener("keydown", (e) => {
+            let tablo = document.getElementById("tablo");
+
+            console.log(`key: ${e.key}`);
+            console.log(`left: ${pleft}, top: ${ptop}`);
+
+            switch(e.key){
+                case "ArrowUp":
+                    if(ptop > 10)
+                        ptop -= 10;
+                    break;
+                case "ArrowDown":
+                    if(ptop < document.documentElement.clientHeight - 30)
+                        ptop += 10;
+                    break;
+                case "ArrowLeft":
+                    if(pleft > 10)
+                        pleft -= 10;
+                    break;
+                case "ArrowRight":
+                    if(pleft < document.documentElement.clientWidth - 30)
+                        pleft += 10;
+                    break;
+            }
+            tablo.style.left = "" + pleft + "px";
+            tablo.style.top = "" + ptop + "px";
+        });
+    </script>
+</body>
+</html>

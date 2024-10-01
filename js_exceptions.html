@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        try{
+            func();
+            
+        }
+        catch(ex){
+            console.log(ex.name);
+            console.log(ex.message);
+            
+        }
+        finally{
+
+        }
+
+        function Fraction(n, d){
+            this.numerator = n;
+            if(d == 0)
+                throw "divide by zero";
+            this.denominator = d;
+        }
+    </script>
+</body>
+</html>

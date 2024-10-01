@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function RandInt(min = 0, max = 100){
+            return Math.floor(min + Math.random() * (max - min + 1));
+        }
+
+        let size = 5;
+        let array = [];
+
+        for(i = 0; i < size; i++)
+            array.push(RandInt(1, 100));
+        console.log(array);
+
+        array.unshift(200);
+        console.log(array);
+
+        console.log(array.pop());
+        console.log(array.shift());
+
+        console.log(array);
+        console.log(array.splice(1, 2));
+        console.log(array);
+
+        console.log(array.splice(1, 0, 300));
+        console.log(array);
+
+        console.log(array.splice(1, 1, 500));
+        console.log(array);
+
+        // let employees = [{name: "Bobby", age: 29}, {name: "Sammy", age: 31}];
+        // //let managers = [...employees];
+        // let managers = employees.slice();
+        // managers[0].name = "Kenny";
+        // console.log(employees);
+
+        for(i = 0; i < size; i++)
+            array.push(RandInt(1, 100));
+        console.log(array);
+
+        let arraySlice = array.slice(-7, -3);
+        console.log(array);
+        console.log(arraySlice);
+        
+        console.log(array.toSpliced(2, 5));
+
+        let pathItems = ["D:", "Folder1", "Subfolder 2", "filename.txt"];
+        let path = pathItems.join("\\");
+        console.log(path);
+
+        //array.sort((a, b) => a - b);
+        
+        console.log(array.toSorted((a, b) => a - b));
+        console.log(array);
+        
+        console.log(array.toReversed());
+        array.reverse();
+        console.log(array);
+        
+        let key = 500;
+        console.log(array.indexOf(key));
+        console.log(array.lastIndexOf(key));
+        
+        console.log(array.includes(key));
+        
+        console.log(array.every(e => e % 2 == 0));
+        console.log(array.some(e => e % 2 == 0));
+        
+        let even = array.filter((e, i) => i % 2 == 0);
+        console.log(even);
+
+        array.forEach((e, i) => console.log(`${i} => ${e}`));
+
+        console.log(array);
+        let squares = array.map((e, i) => [i, e * e]);
+        console.log(squares);
+        
+        let res = array.find(e => e > 50);
+        console.log(res);
+        
+        res = array.findLast(e => e > 50);
+        console.log(res);
+
+        res = array.findIndex(e => e > 50);
+        console.log(res);
+        
+        res = array.findLastIndex(e => e > 50);
+        console.log(res);
+
+
+        let lists = [1, 2, 3, 4, [5, 6, 7], 8, [9, 10, [11, 12, 13], 14]];
+        console.log(lists.flat(Infinity));
+
+        let arrayWith = array.with(1, 1000);
+        console.log(array);
+        console.log(arrayWith);
+        
+        let summa = array.reduce((pe, ce) => pe += ce, 100000);
+        console.log(summa);
+        
+
+    </script>
+</body>
+</html>

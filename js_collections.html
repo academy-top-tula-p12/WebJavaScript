@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        let array = [3, 2, 7, 1, 2, 8, 3, 1, 2];
+        let set = new Set(array);
+        console.log(set);
+        
+
+        set.add(10);
+        set.add(8);
+        console.log(set);
+
+        console.log(set.delete(10));
+        console.log(set.delete(5));
+
+        console.log(set.has(2));
+        console.log(set.has(5));
+
+        set.forEach((e) => console.log(e));
+
+        function RandInt(min = 0, max = 100){
+            return Math.floor(min + Math.random() * (max - min + 1));
+        }
+
+        let arrayInt = [];
+        for(i = 0; i < 10; i++)
+            arrayInt.push(RandInt(1, 9));
+        console.log(arrayInt);
+        
+        set = new Set(arrayInt);
+
+        arrayInt = Array.from(set);
+        console.log(arrayInt);
+
+
+        let dict = new Map([["one", 1], ["two", 2], ["three", 3]]);
+        console.log(dict);
+        
+        dict.set("fore", 4);
+        dict.set("one", 100);
+        console.log(dict);
+
+        console.log(dict.get("three"));
+        console.log(dict.get("five"));
+
+        console.log(dict.has("three"));
+        console.log(dict.has("five"));
+
+        dict.forEach((v, k) => console.log(k + " => " + v));
+
+        for(pair of dict)
+            console.log(pair[0] + " => " + pair[1]);
+
+        console.log(dict.keys());
+        console.log(dict.values());
+        
+
+        // dict.delete("one");
+        // console.log(dict);
+
+        // dict.clear();
+
+        let weakSet = new WeakSet();
+        let weakMap = new WeakMap();
+    </script>
+</body>
+</html>
