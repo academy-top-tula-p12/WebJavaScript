@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <form action="user.php" name="user">
+        <input type="text" name="name"><br>
+        <input type="submit" value="Send" name="send_input">
+        <button type="submit" value="Send" name="send_button">Send</button><br>
+        <input type="reset" name="clear" value="Clear">
+        <button type="reset" value="Clear">Clear</button>
+        <button type="button" id="creator">Add item</button>
+    </form>
+
+    <script>
+        let send_input = document.getElementsByName("send_input")[0];
+        let send_button = document.getElementsByName("send_button")[0];
+
+        let name = document.forms["user"].elements["name"];
+
+        send_input.addEventListener("click", (e) => {
+            //e.preventDefault();
+            document.forms["user"].action = "user_callback.php";
+            console.log("send to console " + name.value);
+        });
+    </script>
+</body>
+</html>

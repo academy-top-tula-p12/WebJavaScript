@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>You know<span id="tablo"></span></p>
+    <p>You live <span id="city"></span></p>
+    <p>Your position <span id="position"></span></p>
+    <form name="user">
+        <label for="cpp">C++</label>
+        <input type="checkbox" name="cpp">
+        <label for="cs">C#</label>
+        <input type="checkbox" name="cs">
+        <label for="java">Java</label>
+        <input type="checkbox" name="java">
+        <br><br>
+        <label>Moscow</label><input type="radio" name="city" value="Moscow">
+        <label>Kaluga</label><input type="radio" name="city" value="Kaluga">
+        <label>Voroneg</label><input type="radio" name="city" value="Voroneg">
+        <br><br>
+        <select name="positions">
+            <option value="Manager">Manager</option>
+            <option value="Saler">Saler</option>
+            <option value="Tester">Tester</option>
+        </select>
+        <br><br>
+        <input type="text" name="position_new"><br>
+        <button name="btn_add">Add Position</button><br><br>
+        <button name="btn_delete">Delete Position</button>
+
+    </form>
+    
+
+    <script>
+        let checks = document.querySelectorAll("[type='checkbox']");
+        let tablo = document.getElementById("tablo");
+
+        for(let check of checks)
+            check.addEventListener("click", (e) =>{
+                tablo.innerText = "";
+                for(let c of checks)
+                    if(c.checked)
+                        tablo.innerText += " " + c.name;
+        });
+
+        let city = document.getElementById("city");
+        for(let r of document.user.city)
+            r.addEventListener("click", (e) =>{
+                city.innerText = e.target.value;
+            });
+
+        let position_span = document.getElementById("position");
+
+        let form = document.user;
+        let positions = form.positions;
+        let options = form.positions.options;
+
+        function selectOption(){
+            for(let o of options)
+                if(o.selected)
+                    return o;
+        }
+        
+        positions.addEventListener("change", (e) => {
+            //position_span.innerText = "";
+            for(let o of options)
+                if(o.selected)
+                    position_span.innerText = o.value;
+        });
+
+        let pos_new = user.position_new;
+        document.forms["user"].elements["btn_add"].addEventListener("click", (e) =>{
+            console.log("click!");
+            // if(pos_new.innerText.trim().length > 0){
+                
+                
+            //     let option_new = document.createElement("option");
+            //     option_new.value = pos_new.innerText;
+            //     option_new.innerText = pos_new.innerText;
+            //     pos_new.innerText = "";
+            //     console.log(option_new);
+                
+            //     positions.append(option_new);
+            // }
+
+        });
+        
+        
+    
+        
+        
+    </script>
+</body>
+</html>

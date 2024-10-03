@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form name="app">
+        <input type="text" name="position"><br>
+        <button type="button" name="btn_add">Add Position</button><br><br>
+        <button type="button" name="btn_delete">Delete Position</button><br><br>
+        
+
+        <select name="positions">
+            <option value="Manager">Manager</option>
+            <option value="Saler">Saler</option>
+        </select>
+    </form>
+    
+
+    <script>       
+
+        let btn_add = document.app.btn_add;
+        btn_add.addEventListener("click", (e) =>{
+            let pos_text = document.app.position.value;
+            let option = document.createElement("option");
+            option.value = option.innerText = pos_text;
+
+            document.app.positions.append(option);
+            
+            document.app.position.value = "";
+
+        });
+
+        function optionSelected(){
+            for(let o of document.app.positions.options)
+                if(o.selected)
+                    return o;
+        }
+
+        let btn_delete = document.app.btn_delete;
+        btn_delete.addEventListener("click", (e) =>{
+            let select = optionSelected();
+            select.remove();
+        });
+
+        // document.app.positions.addEventListener("change", (e) =>{
+        //     console.log(optionSelected());
+        // });
+        
+    </script>
+</body>
+</html>

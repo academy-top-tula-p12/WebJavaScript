@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form name="msg_form">
+        <textarea name="comment" rows="5" cols="40" style="resize: none;"></textarea>
+    </form>
+    
+    <span id="codes"></span>
+
+    <script>
+        let area = document.msg_form.elements["comment"];
+        let codes = document.getElementById("codes");
+
+        area.addEventListener("keydown", (e) =>{
+            codes.innerText += " " + e.keyCode;
+        });
+
+    </script>
+</body>
+</html>

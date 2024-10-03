@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #div_submit{
+            width: 100px;
+            height: 50px;
+            background-color: blueviolet;
+        }
+    </style>
+</head>
+<body>
+    <form action="user_info.php" 
+          name="user_form" 
+          id="user_form" 
+          method="post">
+
+        <input type="text" name="user_name" id="user_name">
+        <input type="number" name="user_age" id="user_age">
+        <input type="button" name="send" id="send" value="Send">
+
+        <!-- <textarea name="" id=""></textarea>
+        <select name="" id="">
+            <option value=""></option>
+        </select>
+        <button></button> -->
+    </form>
+
+    <!-- <div id="div_submit">
+
+    </div> -->
+    
+    <script>
+        // let user_form1 = document.getElementsByName("user_form");
+        // let user_form2 = document.getElementById("user_form");
+        // let user_form3 = document.user_form;
+        // let user_form4 = document.forms["user_form"];
+        // let user_form5 = document.forms[0];
+        // let user_form6 = document.querySelector("#user_form");
+        
+        let user_form = document.user_form;
+        console.log(user_form);
+        console.log(user_form.name);
+        console.log(user_form.elements);
+        console.log(user_form.length);
+        console.log(user_form.action);
+        console.log(user_form.method);
+        
+        // let div_submit = document.getElementById("div_submit");
+        // div_submit.addEventListener("click", () => {
+        //     user_form.reset();
+        // });
+
+        console.log(user_form.elements["user_name"]);
+        console.log(user_form.elements[0]);
+
+        let button = user_form.elements["send"];
+        button.addEventListener("click", () => {
+            console.log(user_form.elements["user_name"].value);
+            console.log(user_form.elements["user_age"].value);
+
+            user_form.elements["user_name"].focus();
+        });
+    </script>
+</body>
+</html>
