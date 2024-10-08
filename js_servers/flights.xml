@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<flights>
+    <flight name="ATB-48">
+        <data>10.05.25</data>
+        <time>19:40</time>
+        <city_from>Moscow</city_from>
+        <city_to>Kazan</city_to>
+    </flight>
+    <flight name="SRW-106">
+        <data>23.10.25</data>
+        <time>10:10</time>
+        <city_from>St/ Peterburh</city_from>
+        <city_to>Novosibirsk</city_to>
+    </flight>
+    <flight name="PLU-46A">
+        <data>08.03.25</data>
+        <time>8:00</time>
+        <city_from>Novgorod</city_from>
+        <city_to>Tumen</city_to>
+    </flight>
+</flights>

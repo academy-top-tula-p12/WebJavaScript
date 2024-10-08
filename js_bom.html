@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <p>
+        Валидация форм была педантичным занятием с момента появления web. Первой пришла серверная валидация. Затем она развилась в валидацию на стороне клиента для проверки результатов в браузере. Теперь у нас есть такие гиганты как HTML5 и CSS3: глава о формах HTML5 предлагает нам новые типы для input полей и атрибуты, которые делают возможным проверку ограничений поля. Базовый UI модуль CSS3 предоставляет несколько псевдо-классов, которые помогают нам стилизовать состояние валидности и менять внешний вид поля в зависимости от действий пользователя. Давайте взглянем на комбинацию обоих для создания валидатора форм основанного на CSS, который имеет достаточно широкую поддержку браузеров.
+    </p>
+    <p>
+        Чем больше мы можем дать подсказок пользователю, как правильно заполнять форму, в процессе заполнения, тем меньше шансов, что он сделает ошибку. Взгляните на пример CSS3 валидации форм в браузере поддерживающем CSS3 UI псевдо-классы, например Chrome 4+, Safari 5+ или Opera 9.6+. Я использовал CSS3 UI псевдо-классы и HTML5 атрибуты форм для создания валидации основанной на CSS. Давайте посмотрим как это работает.
+    </p> -->
+    
+    <!-- <form name="search">
+        <p><input type="text" name="text"></p>
+        <p><button name="btn_search" type="button">Search</button></p>
+    </form> -->
+
+    <button type="button" id="btn">Do it</button>
+    <button type="button" id="btn2">Do other</button>
+    <script>
+        // console.log(window.innerHeight);
+        // console.log(window.outerHeight);
+
+        // console.log(window.innerWidth);
+        // console.log(window.outerWidth);
+
+        // console.log(window.locationbar);
+        // console.log(window.menubar);
+        // console.log(window.scrollbars);
+        // console.log(window.personalbar);
+
+        // alert("Alert window");
+        // let answer = confirm("Continue?");
+        // if(answer)
+        //     console.log("yes");
+        // else
+        //     console.log("no");
+        // let name = prompt("input name");
+        // console.log(`Name: ${name}`);
+        
+        // let btn_search = document.search.btn_search;
+        // let text = document.search.text;
+        // console.log(text);
+        
+
+        // btn_search.addEventListener("click", () =>{
+        //     console.log(text.value);
+        //     let result = window.find(text.value, false);
+        //     console.log(result);
+        // });
+
+        //print();
+        // let yandex = null;
+        
+        // let btn = document.getElementById("btn");
+        // btn.addEventListener("click", () =>{
+        //     if(!yandex || yandex.closed)
+        //         yandex = window.open("https://yandex.ru");
+        // });
+
+        // let btn2 = document.getElementById("btn2");
+        // btn2.addEventListener("click", () =>{
+        //     if(yandex)
+        //         yandex.close();
+        // });
+
+        console.log(window.history);
+        //window.history.back();
+        //window.history.forward();
+        // let pages = 0;
+        // window.history.go(pages);
+
+        let state = {
+                        url: "https://tula.top-academy.ru",
+                        title: "academy top"
+                    };
+
+        window.history.pushState(state, state.title, state.url);
+
+    </script>
+</body>
+</html>

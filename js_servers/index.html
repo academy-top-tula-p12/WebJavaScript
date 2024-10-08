@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flights info</title>
+</head>
+<body>
+    
+    <script>
+        let xmlRequest = new XMLHttpRequest();
+        xmlRequest.onload = () => {
+            if(xmlRequest.status == 200){
+                let xmlData = xmlRequest.responseXML;
+                console.log(xmlData);
+                
+            }
+        };
+        xmlRequest.open("GET", "/data");
+        xmlRequest.responseType = "document";
+        xmlRequest.setRequestHeader("Accept", "text/xml");
+        xmlRequest.send();
+    </script>
+</body>
+</html>

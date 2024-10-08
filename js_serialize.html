@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // let employee = {
+        //     name: "Bobby",
+        //     age: 32,
+        //     position: "Manager",
+        //     married: true
+        // };
+
+        function Employee(name, age, position, married){
+            this.name = name;
+            this.age = age;
+            this.position = position;
+            this.married = married;
+        }
+
+        // let jsonStr = JSON.stringify(employee);
+        // console.log(jsonStr);
+
+        // let bobby = JSON.parse(jsonStr);
+        // console.log(bobby);
+
+
+        // let xmlEmplyee = `<?xml version="1.0" encoding="UTF-8"?>
+        //     <employees>
+        //         <employee>
+        //             <name type="first">Bobby</name>
+        //             <age>32</age>
+        //             <position>Manager</position>
+        //             <married state="true"/>
+        //         </employee>
+        //         <employee>
+        //             <name type="first">Tommy</name>
+        //             <age>26</age>
+        //             <position>Developer</position>
+        //             <married state="false"/>
+        //         </employee>
+        //     </employees>`;
+
+        // let xmlParser = new DOMParser();
+        // let xmlDom = xmlParser.parseFromString(xmlEmplyee, "text/xml");
+
+        // let employees = xmlDom.querySelectorAll("employee");
+        //console.log(employees);
+        
+        // let name = employee.querySelector("name").textContent;
+        // let age = employee.querySelector("age").textContent;
+        // let position = employee.querySelector("position").textContent;
+        // let married = employee.querySelector("married").getAttribute("state");
+        
+        
+        // let bobby = new Employee(name, age, position, married);
+        // console.log(bobby);
+        
+        //let jsonEmployee = JSON.stringify(employee);
+        //console.log(jsonEmployee);
+        
+        
+        // let xmlDocument = (new XMLSerializer()).serializeToString(xmlDom);
+        // console.log(xmlDocument);
+
+        let tommy = new Employee("Tommy", 28, "Saler", false);
+        console.log(tommy);
+
+        let objTommy = document.createElement("employee");
+        let objName = document.createElement("name");
+        objName.textContent = tommy.name;
+        objTommy.append(objName);
+        console.log(objTommy);
+
+        let xmlSerializer = new XMLSerializer();
+        let xmlTommy = xmlSerializer.serializeToString(objTommy);
+        console.log(xmlTommy);
+        
+
+        
+        
+
+        
+        
+        
+    </script>
+</body>
+</html>

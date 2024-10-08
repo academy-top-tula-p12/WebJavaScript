@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .error{
+            background-color: pink;
+            color: darkred;
+            display: none;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <form name="register" method="post">
+        <p>
+            <label for="login">Login: </label>
+            <input name="login" 
+                   type="text"
+                   minlength="3"
+                   maxlength="20"
+                   required>
+            <div id="loginError" class="error"></div>
+        </p>
+
+        <p>
+            <label for="password">Password: </label>
+            <input name="password" 
+                   type="password"
+                   minlength="3"
+                   maxlength="20"
+                   required>
+        </p>
+
+        <p>
+            <label for="rep_password">Repeat password: </label>
+            <input name="rep_password" 
+                   type="password"
+                   minlength="3"
+                   maxlength="20"
+                   required>
+        </p>
+
+        <p>
+            <label for="email">Email: </label>
+            <input name="email" 
+                   type="email"
+                   pattern="\d+@\d+\.\d{1:3}"
+                   required>
+            <div id="emailError" class="error"></div>
+        </p>
+
+        <p>
+            <label for="age">Age: </label>
+            <input name="age" 
+                   type="number"
+                   min="1"
+                   max="100"
+                   value="16">
+        </p>
+        <p>
+            <button type="submit" name="submit">Register</button>
+        </p>
+        
+    </form>
+
+    <script>
+        let login = document.register.elements["login"];
+        let email = document.register.elements["email"];
+
+        login.addEventListener("input", (e) => {
+            if(!login.validity.valid){
+                let loginError = document.getElementById("loginError");
+                loginError.innerText = login.validationMessage;
+                loginError.style.display = "block";
+            }
+            else{
+                loginError.style.display = "none";
+            }
+            // console.log(login.willValidate);
+            // console.log(login.validity.valueMissing);
+            // console.log(login.validity.valid);
+            // console.log(login.validationMessage);
+        });
+
+        email.addEventListener("blur", (e) => {
+            if(email.validity.patternMismatch){
+                let emailError = document.getElementById("emailError");
+                emailError.innerText = login.validationMessage;
+                emailError.style.display = "block";
+            }
+            else{
+                emailError.style.display = "none";
+            }
+        });
+
+    </script>
+    
+</body>
+</html>
