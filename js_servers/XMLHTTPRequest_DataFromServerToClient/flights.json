@@ -1,0 +1,25 @@
+{
+    "flights": [
+        {
+            "name": "ATB-48",
+            "data": "10.05.25",
+            "time": "19:40",
+            "city_from": "Moscow",
+            "city_to":"Kazan"
+        },
+        {
+            "name": "SRW-106",
+            "data": "23.10.25",
+            "time": "10:10",
+            "city_from": "St. Peterburh",
+            "city_to":"Novosibirsk"
+        },
+        {
+            "name": "PLU-46A",
+            "data": "08.03.25",
+            "time": "8:00",
+            "city_from": "Novgorod",
+            "city_to":"Tumen"
+        }
+    ]
+}

@@ -4,7 +4,8 @@ let fs = require("fs");
 let server = http.createServer(function(request, response){
     let fileName = "";
     if(request.url == "/data")
-        fileName = "flights.xml";
+        //fileName = "flights.xml";
+        fileName = "flights.json";
     else
         fileName = "index.html";
     fs.readFile(fileName, (_, data) => response.end(data));

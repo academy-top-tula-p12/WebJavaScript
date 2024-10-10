@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise</title>
+</head>
+<body>
+    
+    <script>
+        /*
+        pending - waiting state
+        fulfilled - goodluck ending
+        rejected - bad ending
+
+        new Promise(asyncExec);
+        asyncExec(resolveFunc, rejectFunc)
+        */
+
+        // let logPromise3 = new Promise((resolve, reject) => {
+        //     console.log("Async function 3 sec");
+        //     setTimeout(() => resolve("Stop async function 3 sek"), 3000);
+        // });
+        // let logPromise1 = new Promise((resolve, reject) => {
+        //     console.log("Async function 1 sec");
+        //     setTimeout(() => resolve("Stop async function 1 sek"), 1000);
+        // });
+        // let logPromise2 = new Promise((resolve, reject) => {
+        //     console.log("Async function 2 sec");
+        //     setTimeout(() => resolve("Stop async function 2 sek"), 2000);
+        // });
+
+        // logPromise3.then(function(param){
+        //     console.log(param);
+        // });
+        // logPromise1.then((param) => console.log(param));
+        // logPromise2.then((param) => console.log(param));
+
+        function GaussSum(n, func){
+            return new Promise( function(resolve){
+                if(func === undefined)
+                    func = function(result){ 
+                                console.log(`result for ${n} = ${result}`)
+                           };
+                setTimeout(() => {
+                    let result = 0;
+                    for(i = 1; i <= n; i++){
+                        result += i;
+                    }
+                    resolve(result);
+                }, n);
+            }).then(func)}
+
+        GaussSum(5000);
+        GaussSum(2000);
+        GaussSum(3000, function(result) { console.log(`other result = ${result}`)});
+
+    </script>
+</body>
+</html>

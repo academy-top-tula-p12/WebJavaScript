@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flights info</title>
+    <style>
+        #main-wrap{
+            display: flex;
+            flex-direction: column;
+        }
+        .row{
+            display: flex;
+            justify-content: space-between;
+        }
+        .row:nth-child(odd){
+            background-color: azure;
+        }
+        .row:hover{
+            background-color: brown;
+            color: white;
+        }
+        .item{
+            flex: 1;
+            border: 1px black solid;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="main-wrap"></div>
+
+    <script>
+        let xmlRequest = new XMLHttpRequest();
+        xmlRequest.onload = () => {
+            if(xmlRequest.status == 200){
+                let main_wrap = document.getElementById("main-wrap");
+                
+                // XML DATA
+                //let xmlData = xmlRequest.responseXML;
+                //console.log(xmlData);
+                //let flights = xmlData.getElementsByTagName("flight");
+
+                //JSON DATA
+                let jsonData = xmlRequest.response;
+
+                for(let flight of jsonData["flights"]){
+                    let row = createRowJson(flight);
+                    main_wrap.append(row);
+                }
+          
+                // XML DATA
+                // for(i = 0; i < flights.length; i++){
+                //     let row = createRow(flights[i]);
+                //     main_wrap.append(row);
+                // }
+            }
+        };
+        xmlRequest.open("GET", "/data");
+        
+        //XML DATA
+        // xmlRequest.responseType = "document";
+        // xmlRequest.setRequestHeader("Accept", "text/xml");
+        
+        // JSON DATA
+        xmlRequest.responseType = "json";
+        xmlRequest.setRequestHeader("Accept", "text/json");
+
+        xmlRequest.send();
+
+
+
+        function createRow(flight){
+            let flightName = flight.getAttribute("name");
+            
+            let row = document.createElement("div");
+            row.classList.add("row");
+            let item = document.createElement("div");
+            item.classList.add("item");
+            item.innerHTML = flightName
+            row.append(item);
+
+            for(let itemFlight of flight.children){
+                let item = document.createElement("div");
+                item.classList.add("item");
+                item.innerHTML = itemFlight.innerHTML;
+                row.append(item);
+            }
+
+            return row;
+        }
+
+        function createRowJson(flight){
+            let row = document.createElement("div");
+            row.classList.add("row");
+
+            for(let itemFlight in flight){
+                let item = document.createElement("div");
+                item.classList.add("item");
+                item.innerHTML = flight[itemFlight];
+                row.append(item);
+            }
+            //console.log(row);
+            return row;
+        }
+    </script>
+</body>
+</html>

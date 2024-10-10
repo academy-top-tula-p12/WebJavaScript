@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Send data to server</title>
+    
+</head>
+<body>
+    <script>
+        let flightNumber = "12345";
+        let flight = {
+            name: "909",
+            date: "05.2025"
+        };
+
+        let xmlRequest = new XMLHttpRequest();
+        xmlRequest.onload = () => {
+            if(xmlRequest.status == 200){
+                //console.log(xmlRequest.responseText);
+                let flightResponse = JSON.parse(xmlRequest.responseText);
+                console.log(flightResponse);
+            }
+        };
+        
+        xmlRequest.open("POST", "/data");
+        xmlRequest.setRequestHeader("Content-Type", "application/json");
+        xmlRequest.send(JSON.stringify(flight));
+        
+    </script>
+</body>
+</html>
