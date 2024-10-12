@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch welcome</title>
+</head>
+<body>
+    <script>
+        // let result = fetch("/data");
+        // result.then(response => response.text())
+        //       .then(text => console.log(text));
+
+        // async function getData(){
+        //     let response = await fetch("/data");
+        //     let text = await response.text();
+        //     console.log(text);
+        // }
+
+        //getData();
+
+        // fetch("http://127.0.0.1:5000/data")
+        //         .then(response => {
+        //             console.log(`Status: ${response.status}`);
+        //             console.log(`Status Text: ${response.statusText}`);
+        //             console.log(`Url: ${response.url}`);      
+        //         });
+
+        async function getInfo() {
+            let response = await fetch("/data");
+            console.log(`Status: ${response.status}`);
+            console.log(`Status Text: ${response.statusText}`);
+            console.log(`Url: ${response.url}`);
+            for(let header of response.headers)
+                console.log(`${header[0]} => ${header[1]}`);
+                
+        }
+
+        getInfo();
+          
+    </script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise chain</title>
+</head>
+<body>
+    
+    <script>
+        
+        function createNumber(numberStr){
+            return new Promise(function(resolve, reject){
+                let number = parseInt(numberStr);
+                if(!isNaN(number))
+                    resolve(number);
+                else
+                    reject("Not a Number!");
+            });
+        }
+
+        function logSumma(numberStr){
+            createNumber(numberStr)
+                .then(number => { 
+                    console.log(`Good result: ${number}`);
+                    return number;
+                })
+                .then(number => {
+                    let result = 0;
+                    for(let i = 1; i <= number; i++)
+                        result += i;
+                    console.log(`Summa = ${result}`);
+                })
+                .catch(error => console.log(`Error: ${error}`))
+                .finally(() => console.log("End of program"));
+        }
+
+        logSumma("1000");
+        logSumma("assa");
+
+        function simplePromiseChain(){
+            let promiseHelloWorld = new Promise(function(resolve){
+            resolve("Hello world");
+        });
+
+        let promiseHello = promiseHelloWorld.then(function(value){
+            return value + "! Hello";
+        });
+
+        let promisePeople = promiseHello.then(function(value){
+            return value + " People!";
+        });
+
+        promisePeople.then(function(value){
+            console.log(value);
+        });
+        }
+    </script>
+</body>
+</html>

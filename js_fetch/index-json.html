@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fetch send json</title>
+    <style>
+        .wrap, .row{
+            display: flex;
+        }
+        .wrap{
+            flex-direction: column;
+        }
+        .row{
+            justify-content: space-between;
+        }
+
+        .row div{
+            flex: 1;
+        }
+    </style>
+</head>
+<body>
+    <button id="read">Read info</button>
+    <h1>Info of flight:</h1>
+
+    <div class="wrap">
+        <div class="row">
+            <div id="name">Name</div>
+            <div id="from">From</div>
+            <div id="to">To</div>
+        </div>
+    </div>
+    
+    
+    <script>
+        // fetch("/data")
+        //     .then(response => response.json())
+        //     .then(json => {
+        //         document.getElementById("name").innerText = json.name;
+        //         document.getElementById("from").innerText = json.from;
+        //         document.getElementById("to").innerText = json.to;
+        //     });
+
+        document.getElementById("read")
+                .addEventListener("click", getFlights);
+
+        async function getFlights() {
+            let response = await fetch("/data");
+            let jsonArray = await response.json();
+
+            console.log(jsonArray);
+            
+
+            let wrap = document.querySelector(".wrap");
+
+            jsonArray.forEach((flight) =>{
+                let row = document.createElement("div");
+                row.classList.add("row");
+                for(let prop in flight){
+                    let item = document.createElement("div");
+                    item.innerText = flight[prop];
+                    row.append(item);
+                }
+                wrap.append(row);
+            });
+        }
+
+        async function getFlight(){
+            let response = await fetch("/data");
+            let json = await response.json();
+            document.getElementById("name").innerText = json.name;
+            document.getElementById("from").innerText = json.from;
+            document.getElementById("to").innerText = json.to;
+        }
+
+
+    </script>
+</body>
+</html>

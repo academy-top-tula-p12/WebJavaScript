@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Async Await</title>
+</head>
+<body>
+    
+    <script>
+        function amountGauss(n){
+            return new Promise((resolve) => {
+                let result = 0;
+            for(let i = 1; i <= n; i++)
+                result += i;
+            resolve(result);
+            });
+        }
+
+        async function logResultAsync(n){
+            let result = await amountGauss(n);
+            console.log(`Amount ${n} numbers = ${result}`);
+            
+        }
+
+        //logResultAsync(1000);
+
+        async function amountGaussAsync(n){
+            let result = 0;
+            for(let i = 1; i <= n; i++)
+                result += i;
+
+            return result;
+        }
+
+        amountGaussAsync(1000)
+            .then((result) => console.log(`Async result = ${result}`));
+
+
+        let names = ["Bobby", "Sammy", "Jimmy"];
+
+        async function logNames(names){
+            for await (let name of names)
+                console.log(name);
+        }
+
+        logNames(names);
+
+        let numbers = [2000, 5000, 1000];
+
+        async function logAmountGaussAsync(array){
+            for await (let number of array){
+                let result = 0;
+                for(let i = 1; i <= number; i++)
+                    result += i;
+                console.log(`Number ${number}, result ${result}`);
+            }
+        }
+
+        logAmountGaussAsync(numbers);
+    </script>
+</body>
+</html>

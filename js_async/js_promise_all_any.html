@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise groups</title>
+</head>
+<body>
+    
+    <script>
+        let promise5 = new Promise((resolve, reject)=>{
+            setTimeout(resolve, 5000, "Promise 5000");
+            reject("unknow error");
+        });
+
+        let promise3 = new Promise((resolve, reject)=>{
+            setTimeout(resolve, 3000, "Promise 3000");
+        });
+
+        // promise5.then((value) => console.log(value));
+        // promise3.then((value) => console.log(value));
+
+        // Promise.all([promise5, promise3])
+        //        .then(values => {
+        //             for(let v of values)
+        //                 console.log(v);
+        //        })
+        //        .catch(error => console.log(error));
+        
+        // Promise.allSettled([promise5, promise3])
+        //        .then(values => {
+        //             for(let v of values)
+        //                 console.log(v);
+        //        })
+        //        .catch(error => console.log(error));
+
+        Promise.race([promise5, promise3])
+               .then(value => console.log(value))
+               .catch(error => console.log(error));
+        
+        Promise.any([promise5, promise3])
+               .then(value => console.log(value))
+               .catch(error => console.log(error));
+
+    </script>
+</body>
+</html>
