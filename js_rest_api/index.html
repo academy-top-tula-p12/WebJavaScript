@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title>Books Rest Api</title>
+    <style>
+        a{
+            cursor: pointer;
+            padding: 5px;
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container text-left">
+        <form name="book_form" class="container p-5">
+            <div class="row">
+                <div class="col">
+                    <label for="bookTitle" class="form-label">Название книги</label>
+                    <input name="bookTitle" type="text" class="form-control">
+                </div>
+                <div class="col">
+                    <label for="bookAuthor" class="form-label">Автор</label>
+                    <input name="bookAuthor" type="text" class="form-control">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label for="bookYear" class="form-label">Год издания</label>
+                    <input name="bookYear" type="number" class="form-control">
+                </div>
+                <div class="col">
+                    <label for="bookPrice" class="form-label">Цена</label>
+                    <input name="bookPrice" type="number" min="0" step="0.5" class="form-control">
+                </div>
+            </div>
+            <div class="row m-4">
+                <div class="col">
+                    <button id="btn_save" type="button" class="btn btn-primary">Сохранить</button>
+                    <button id="btn_reset" type="button" class="btn btn-danger">Очистить</button>
+                </div>
+            </div>
+        </form>
+        <div class="row m-5">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Номер</th>
+                        <th>Название</th>
+                        <th>Автор</th>
+                        <th>Год</th>
+                        <th>Цена</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script>
+        
+        let bookForm = document.forms["book_form"];
+        let bookId = 0;
+        let tbody = document.querySelector("tbody");
+
+        document.getElementById("btn_reset")
+                .addEventListener("click", (e) =>{
+                    bookForm.reset();
+                    bookId = 0;
+                });
+        
+        document.getElementById("btn_save")
+                .addEventListener("click", (e) => {
+                    let title = bookForm.elements["bookTitle"].value;
+                    let author = bookForm.elements["bookAuthor"].value;
+                    let year = bookForm.elements["bookYear"].value;
+                    let price = bookForm.elements["bookPrice"].value;
+
+                    if(bookId === 0)
+                        createBook(title, author, year, price);
+                    // else
+                    //     updateBook(title, author, year, price);
+                    }
+                );
+
+
+        async function getBooks(){
+            let response = await fetch("/api/books", {
+                method: "GET",
+                headers: {"Accept": "application/json" }
+            });
+
+            if(response.ok === true){
+                let booksJson = await response.json();
+                booksJson.forEach(book => tbody.append(createTableRow(book)))
+                // add book to row of table
+            }
+        }
+        
+        async function getBook(id){
+            let response = await fetch("/api/books/" + id, {
+                method: "GET",
+                headers: { "Accept": "application/json" }
+            });
+            if(response.ok === true){
+                let book = await response.json();
+                bookId = book.id;
+                bookForm.elements["bookTitle"].value = book.title;
+                bookForm.elements["bookAuthor"].value = book.author;
+                bookForm.elements["bookYear"].value = book.year;
+                bookForm.elements["bookPrice"].value = book.price;
+            }
+        }
+
+        async function createBook(title, author, year, price){
+            let response = await fetch("/api/books", {
+                method: "POST",
+                headers: {
+                    "Accept": "application/json",
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    "title": title,
+                    "author": author,
+                    "year": year,
+                    "price": price,
+                })
+            });
+
+            if(response.ok === true){
+                let book = await response.json();
+                bookForm.reset();
+                bookId = 0;
+                tbody.append(createTableRow(book));
+            }
+        }
+
+        function createTableRow(book){
+            console.log(book);
+            
+            let row = document.createElement("tr");
+            row.setAttribute("data-id", book.id);
+
+            let cellId = document.createElement("td");
+            cellId.innerHTML = book.id;
+            row.append(cellId);
+
+            let cellTitle = document.createElement("td");
+            cellTitle.innerHTML = book.title;
+            row.append(cellTitle);
+
+            let cellAuthor = document.createElement("td");
+            cellAuthor.innerHTML = book.author;
+            row.append(cellAuthor);
+
+            let cellYear = document.createElement("td");
+            cellYear.innerHTML = book.year;
+            row.append(cellYear);
+
+            let cellPrice = document.createElement("td");
+            cellPrice.innerHTML = book.price;
+            row.append(cellPrice);
+
+            let cellControl = document.createElement("td");
+
+            let linkEdit = document.createElement("a");
+            linkEdit.setAttribute("data-id", book.id);
+            linkEdit.append("Изменить");
+            linkEdit.classList.add("btn");
+            linkEdit.classList.add("btn-outline-primary");
+            linkEdit.addEventListener("click", async (e) => {
+                e.preventDefault();
+                await getBook(book.id);
+            });
+            cellControl.append(linkEdit);
+
+            let linkDelete = document.createElement("a");
+            linkDelete.setAttribute("data-id", book.id);
+            linkDelete.append("Удалить");
+            linkDelete.classList.add("btn");
+            linkDelete.classList.add("btn-outline-danger");
+            linkDelete.addEventListener("click", (e) => {
+                e.preventDefault();
+                //await deleteBook(book.id);
+            });
+            cellControl.append(linkDelete);
+            row.append(cellControl);
+
+            return row;
+        }
+
+        getBooks();
+    </script>
+</body>
+</html>
