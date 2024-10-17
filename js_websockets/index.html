@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let connection = new WebSocket("ws://localhost:5000");
+
+        connection.onopen = (e) =>{
+            console.log("connection is open");
+            connection.send("Hello from client");
+        }
+
+        connection.onclose = (e) => {
+            console.log("connection is close");
+        }
+
+        connection.onerror = (e) => {
+            console.log(`socket error: ${e}`);
+        }
+
+        connection.onmessage = (e) => {
+            console.log(`server message: ${e.data}`);
+        }
+
+    </script>
+</body>
+</html>

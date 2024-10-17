@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            width: 500px;
+            height: 200px;
+            margin: 20px;
+        }
+        .box{
+            background-color: aquamarine;
+        }
+        .box2{
+            background-color:hotpink;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+        <li>Item 4</li>
+        <li>Item 5</li>
+        <li>Item 6</li>
+        <li>Item 7</li>
+        <li>Item 8</li>
+        <li>Item 9</li>
+    </ul>
+    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Error excepturi adipisci culpa, dolore ullam assumenda, modi delectus qui, ad velit nostrum nobis rem ipsa repellat cupiditate iste accusamus dicta perferendis.</p>
+    <div class="other">
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officiis, repellendus commodi labore consectetur optio magnam error quia temporibus nesciunt qui, et maiores cumque ratione quasi illum excepturi enim ab alias?
+    </div>
+    <div class="box">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam explicabo eveniet distinctio esse molestiae, accusamus, nisi ipsum consectetur accusantium, recusandae quisquam dolorem id odio laboriosam veniam dolor autem? Fuga, nostrum!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam explicabo eveniet distinctio esse molestiae, accusamus, nisi ipsum consectetur accusantium, recusandae quisquam dolorem id odio laboriosam veniam dolor autem? Fuga, nostrum!</p>
+    </div>
+    <div class="box2">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam explicabo eveniet distinctio esse molestiae, accusamus, nisi ipsum consectetur accusantium, recusandae quisquam dolorem id odio laboriosam veniam dolor autem? Fuga, nostrum!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam explicabo eveniet distinctio esse molestiae, accusamus, nisi ipsum consectetur accusantium, recusandae quisquam dolorem id odio laboriosam veniam dolor autem? Fuga, nostrum!</p>
+    </div>
+    <button id="btn">JQuery in Action!</button>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script>
+        // $("#btn").click(()=>{
+        //     $("#box").css("background-color", "red");
+        // });
+
+        // jQuery(document).ready(function(){
+
+        // });
+
+        // $(document).ready(function(){
+
+        // });
+
+        $(function(){
+            //$("p, .other").css("color", "red");
+            //$("p", ".box").css("color", "red");
+
+            // $("li:nth-child(3n)").css("color", "red");
+            //$("form:checked")
+
+            let ps = $("p").add($("#btn"));
+            console.log(ps);
+            
+            ps.each(function(index, item){
+                item.innerHTML = "Paragraph " + (index + 1) + " " + item.innerHTML;
+            })
+                
+            
+        })
+    </script>
+</body>
+</html>

@@ -72,6 +72,7 @@
                     bookId = 0;
                 });
         
+        
         document.getElementById("btn_save")
                 .addEventListener("click", (e) => {
                     let title = bookForm.elements["bookTitle"].value;
@@ -81,12 +82,12 @@
 
                     if(bookId === 0)
                         createBook(title, author, year, price);
-                    // else
-                    //     updateBook(title, author, year, price);
+                    else
+                        updateBook(bookId, title, author, year, price);
                     }
                 );
 
-
+        // get all
         async function getBooks(){
             let response = await fetch("/api/books", {
                 method: "GET",
@@ -100,6 +101,7 @@
             }
         }
         
+        // get one
         async function getBook(id){
             let response = await fetch("/api/books/" + id, {
                 method: "GET",
@@ -115,6 +117,7 @@
             }
         }
 
+        // add
         async function createBook(title, author, year, price){
             let response = await fetch("/api/books", {
                 method: "POST",
@@ -137,6 +140,42 @@
                 tbody.append(createTableRow(book));
             }
         }
+
+        // update
+        async function updateBook(id, title, author, year, price){
+            let response = await fetch("/api/books", {
+                method: "PUT",
+                headers: {"Accept": "application/json", "Content-Type": "application/json"},
+                body: JSON.stringify({
+                    "id": id,
+                    "title": title,
+                    "author": author,
+                    "year": year,
+                    "price": price
+                })
+            });
+            if(response.ok === true){
+                let book = await response.json();
+                bookForm.reset();
+                bookId = 0;
+                document.querySelector("tr[data-id='" + book.id + "']")
+                        .replaceWith(createTableRow(book));
+            }
+        }
+
+        // delete
+        async function deleteBook(id){
+            let response = await fetch("/api/books/" + id,{
+                method: "DELETE",
+                headers: {"Accept": "application/json"}
+            });
+            if(response.ok === true){
+                let book = await response.json();
+                document.querySelector("tr[data-id='" + book.id + "']")
+                        .remove();
+            }
+        }
+
 
         function createTableRow(book){
             console.log(book);
@@ -182,9 +221,9 @@
             linkDelete.append("Удалить");
             linkDelete.classList.add("btn");
             linkDelete.classList.add("btn-outline-danger");
-            linkDelete.addEventListener("click", (e) => {
+            linkDelete.addEventListener("click", async (e) => {
                 e.preventDefault();
-                //await deleteBook(book.id);
+                await deleteBook(book.id);
             });
             cellControl.append(linkDelete);
             row.append(cellControl);

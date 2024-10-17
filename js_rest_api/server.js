@@ -45,6 +45,7 @@ let server = http.createServer(async function(request, response){
     if(request.url === "/api/books" && request.method === "GET"){
         response.end(JSON.stringify(books));
     }
+    // get one 
     else if(request.url.match(/\/api\/books\/(\d+)/) && request.method === "GET"){
         let id = request.url.split("/")[3];
 
@@ -57,6 +58,7 @@ let server = http.createServer(async function(request, response){
             response.end(JSON.stringify({ message: "Book not found" }));
         }
     }
+    // add
     else if(request.url === "/api/books" && request.method === "POST"){
         try{
             let bookClient = await getRequestData(request);
@@ -70,6 +72,41 @@ let server = http.createServer(async function(request, response){
         catch(error){
             response.writeHead(404, {"Content-Type": "application/json"});
             response.end(JSON.stringify({ message: "Invalid request" }));
+        }
+    }
+    // update
+    else if(request.url === "/api/books" && request.method === "PUT"){
+        try{
+            let bookClient = await getRequestData(request);
+            let book = books.find(b => b.id === parseInt(bookClient.id));
+            if(book){
+                book.title = bookClient.title;
+                book.author = bookClient.author;
+                book.year = bookClient.year;
+                book.price = bookClient.price;
+                response.end(JSON.stringify(book));
+            }
+            else{
+                response.writeHead(404, {"Content-Type": "application/json"});
+                response.end(JSON.stringify({ message: "Book not found" }));
+            }
+        }
+        catch(error){
+            response.writeHead(404, {"Content-Type": "application/json"});
+            response.end(JSON.stringify({ message: "Invalid request" }));
+        }
+    }
+    else if(request.url.match(/\/api\/books\/(\d+)/) && request.method === "DELETE"){
+        let id = request.url.split("/")[3];
+        let bookIndex = books.findIndex(b => b.id === parseInt(id));
+
+        if(bookIndex > -1){
+            let book = books.splice(bookIndex, 1)[0];
+            response.end(JSON.stringify(book));
+        }
+        else{
+            response.writeHead(404, {"Content-Type": "application/json"});
+            response.end(JSON.stringify({ message: "Book not found" }));
         }
     }
     else if(request.url === "/" || request.url === "/index.html") {
