@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            color: white;
+            font-size: 20px;
+            width: 300px;
+            height: 300px;
+        }
+
+        .box-red{
+            background-color: darkred;
+        }
+
+        .box-blue{
+            background-color: darkblue;
+        }
+    </style>
+</head>
+<body>
+    <!-- <h1>Hello world</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic repellendus praesentium vel inventore in fugiat. Optio commodi voluptatem tenetur reiciendis? Doloribus praesentium quis vero debitis officia soluta, repudiandae aut odit?</p>
+    <a href="https://yandex.ru" data-lang="russian">Search</a> -->
+
+    <!-- <div></div>
+    <form action="">
+        <input type="text" value="Hello">
+    </form> -->
+
+    <ul>
+        <li>Item 1</li>
+    </ul>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            let ancors = $("a");
+            // console.log(ancors.first());
+            // console.log(ancors.first().prop("href"));
+            // //ancors.first().prop("href", "https://google.com");
+            // ancors.first().removeProp("href");
+            // ancors.first().data("name", "yandex");
+            // console.log(ancors.first().data("lang"));
+
+            // console.log(ancors.css("margin", "20px")
+            //                   .css({"color": "white", 
+            //                         "background-color": "darkred",
+            //                         "padding": "20px"}));
+            // $("p").width(300);
+
+            // console.log($("div").first().hasClass("box-red"));
+            // $("div").first().addClass("box-red");
+
+            // $("div").first().click((e) => {
+            //     $("div").first().toggleClass("box-blue");
+            //     $("div").first().html("<h2>Hello world</h2>");
+            //     $("input").first().val(function(index, oldValue){
+            //         console.log(oldValue);
+            //     });
+            // });
+
+            let li = $("li").first();
+            li.after("<li>sibling after</li>");
+
+            let liBefore = document.createElement("li");
+            liBefore.innerHTML = "sibling before";
+            li.before(liBefore);
+
+            let itemAfter = document.createElement("li");
+            itemAfter.innerHTML = "Item after";
+            $("ul").first().append(itemAfter);
+
+            let itemBefore = document.createElement("li");
+            itemBefore.innerHTML = "Item before";
+            $("ul").first().prepend(itemBefore);
+
+            $("<li>Item before to</li>").prependTo($("ul").first());
+            $("<li>Item after to</li>").appendTo($("ul").first());
+
+            $("ul").first().wrap("<div class='box-red'></div>");
+
+            li.replaceWith("<li>new item</li>");
+        });
+    </script>
+</body>
+</html>

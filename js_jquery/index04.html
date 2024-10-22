@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btnNews">Load news</button>
+    <div id="boxNews">Not news...</div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#btnNews").click((e) => {
+                $("#boxNews").load("news.php", {"event": "Rain in Moscow", "date": "19.10.2024"});
+            });
+        });
+        
+    </script>
+</body>
+</html>

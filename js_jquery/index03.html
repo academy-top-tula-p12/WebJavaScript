@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        div{
+            width: 200px;
+            height: 100px;
+            background-color: aqua;
+            margin: 5px;;
+        }
+
+        .box-red{
+            background-color: darkred;
+        }
+    </style>
+</head>
+<body>
+    <button id="btn">Action!</button>
+    <button id="btnTrigger">Trigger!</button>
+    <div id="first">Div 1</div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        // $("#btn").click((e) => {
+        //     let box = document.createElement("div");
+        //     box.innerHTML = "box text";
+        //     $("#btn").before(box);
+        // });
+
+        // $("#btn").bind("click", (e) => {
+        //     let box = document.createElement("div");
+        //     box.innerHTML = "box text";
+        //     e.target.before(box);
+        // });
+
+        let count = 2;
+
+        $("#btn").click((e) => {
+            let box = document.createElement("div");
+            box.innerHTML = "Div " + count++;
+            $("#first").after(box);
+        });
+
+        console.log($("div"));
+
+        $("body").on("click", "div", (e) => {
+            $(e.target).toggleClass("box-red");
+             //.css("background-color", "darkred");
+        });
+
+        $("#btnTrigger").bind("click", ()=>{
+            $("div").first().trigger("click");
+        });
+    </script>
+</body>
+</html>
