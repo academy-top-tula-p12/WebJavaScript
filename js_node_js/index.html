@@ -3,13 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home page</title>
+    <title>Document</title>
 </head>
 <body>
-    <!-- <form method="post" action="/data">
-        <input type="text" name="username">
-        <input type="submit" value="Send">
-    </form> -->
-    <h1>Home page</h1>
+    
+    <script>
+        let flight = {
+            name: "ASD=673",
+            toCity: "Moscow",
+            date: new Date(2024, 5, 17)
+        }
+
+        async function sendData() {
+            let response = await fetch("/hello", {
+                method: "POST",
+                //body: "Hello world"
+                body: JSON.stringify(flight)
+            });
+            let responseText = await response.text();
+            console.log(responseText);
+        }
+
+        sendData();
+    </script>
 </body>
 </html>

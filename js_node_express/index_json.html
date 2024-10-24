@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id="flightForm" action="/flight" method="post">
+        <p>
+            <label for="name">Name</label><br>
+            <input type="text" name="name">
+        </p>
+        <p>
+            <label for="toCity">To City</label><br>
+            <input type="text" name="toCity">
+        </p>
+        <p>
+            <label for="date">Date</label><br>
+            <input type="date" name="date">
+        </p>
+        <p>
+            <label for="time">Time</label><br>
+            <input type="time" name="time">
+        </p>
+        <p>
+            <label for="activity">Actve</label><br>
+            <input type="checkbox" name="activity">
+        </p>
+        <input type="submit" name="submit" value="Send">
+    </form>
+    <script>
+        let flightForm = document.getElementById("flightForm");
+        flightForm.addEventListener("submit", async (e) =>{
+            e.preventDefault();
+
+            let flightObject = {};
+            flightObject.name = flightForm.name.value;
+            flightObject.toCity = flightForm.toCity.value;
+            flightObject.date = flightForm.date.value;
+            flightObject.time = flightForm.time.value;
+            flightObject.activity = flightForm.activity.checked;
+
+            let response = await fetch("/flight", {
+                                        method: "POST",
+                                        headers:{
+                                            "Content-Type": "application/json"
+                                        },
+                                        body: JSON.stringify(flightObject)
+                                    });
+
+            console.log(await response.json());
+        });
+    </script>
+</body>
+</html>
