@@ -6,7 +6,7 @@ app.set("view engine", "hbs");
 
 app.use("/view", function(_, response){
 
-    response.render("index_view.hbs", {
+    response.render(__dirname + "/index_view.hbs", {
         title: "Header number one",
         subtitle: "Subtitle for example",
         items: ["Item 1", "Item 2", "Item 3"]

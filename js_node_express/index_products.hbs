@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Products:</h1>
+    <table>
+        <thead>
+            <th>Title</th>
+            <th>Brand</th>
+            <th>Price</th>
+            <th></th>
+        </thead>
+        <tbody>
+            {{#each products}}
+            <tr>
+                <td>{{this.product}}</td>
+                <td>{{this.brand}}</td>
+                <td>{{this.price}}</td>
+                <td>
+                    <a href="/edit/{{this.id}}">Edit</a>
+                    <form action="/delete/{{this.id}}" 
+                          method="post" 
+                          style="display: inline-block;">
+                        <input type="submit" value="Delete">
+                    </form>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Add product</h1>
+    <form method="post">
+        <p>
+            <label for="title">Title</label><br>
+            <input type="text" name="title">
+        </p>
+        <p>
+            <label for="brand">Brand</label><br>
+            {{#each brands}}
+            <option value="{{this.id}}">{{this.title}}</option>
+            {{/each}}
+        </p>
+        <p>
+            <label for="price">Title</label><br>
+            <input type="number" name="price">
+        </p>
+        <input type="submit" value="Add product">
+        
+    </form>
+</body>
+</html>
