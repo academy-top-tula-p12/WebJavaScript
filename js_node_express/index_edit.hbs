@@ -6,29 +6,30 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Add product</h1>
-    <form method="post">
-        <input type="hidden" name="id" value="{{id}}">
+    <h1>Edit product</h1>
+    <form method="post" action="/edit">
+        <input type="hidden" name="id" value="{{product.selected_id}}">
         <p>
             <label for="title">Title</label><br>
-            <input type="text" name="title" value="{{title}}">
+            <input type="text" name="title" value="{{product.title}}">
         </p>
         <p>
             <label for="brand">Brand</label><br>
-            {{#each brands}}
-            <option value="{{this.id}}"
-            {{#if this.id == selected_id}}
-            selected="selected"
-            {{/if}}
-            >{{this.title}}</option>
-            {{/each}}
+            <select name="brand">
+                {{#each product.brands}}
+                    <option value="{{this.id}}"
+                    {{#if this.selected}}
+                        selected="selected"
+                    {{/if}}
+                    >{{this.title}}</option>
+                {{/each}}
+            </select>
         </p>
         <p>
-            <label for="price">Title</label><br>
-            <input type="number" name="price" value="{{price}}">
+            <label for="price">Price</label><br>
+            <input type="number" name="price" value="{{product.price}}">
         </p>
         <input type="submit" value="Save product">
-        
     </form>
 </body>
 </html>

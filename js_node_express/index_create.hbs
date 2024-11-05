@@ -6,20 +6,23 @@
     <title>Document</title>
 </head>
 <body>
+    <nav><a href="/">Back to Home</a></nav>
     <h1>Add product</h1>
-    <form method="post">
+    <form method="post" action="/create">
         <p>
             <label for="title">Title</label><br>
             <input type="text" name="title">
         </p>
         <p>
             <label for="brand">Brand</label><br>
-            {{#each brands}}
-            <option value="{{this.id}}">{{this.title}}</option>
-            {{/each}}
+            <select name="brand" id="">
+                {{#each brands}}
+                <option value="{{this.id}}">{{this.title}}</option>
+                {{/each}}
+            </select>
         </p>
         <p>
-            <label for="price">Title</label><br>
+            <label for="price">Price</label><br>
             <input type="number" name="price">
         </p>
         <input type="submit" value="Add product">

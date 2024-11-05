@@ -1,0 +1,40 @@
+<label for="">a:</label>
+<input type="number" [(ngModel)]="a"><br>
+
+<label for="">b:</label>
+<input type="number" [(ngModel)]="b"><br>
+
+<label for="">sign:</label>
+<input type="text" [(ngModel)]="sign"><br>
+
+@if(count > 5){
+  <p>count > 5</p>
+}
+@else{
+  <p>count < 5</p>
+}
+
+<h3>{{a}} {{sign}} {{b}} = 
+
+@switch(sign){
+  @case("+"){
+    {{a + b}}
+  }
+  @case("-"){
+    {{a - b}}
+  }
+  @case("*"){
+    {{a * b}}
+  }
+  @case("/"){
+    {{a / b}}
+  }
+}
+
+</h3>
+
+<ul>
+  @for(name of names; track $index){
+    <li>{{$index + 1}} {{name}}</li>
+  }
+</ul>

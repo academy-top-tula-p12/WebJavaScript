@@ -1,0 +1,26 @@
+<p>derect-class works!</p>
+<label for="">Red</label>
+<input type="checkbox" [(ngModel)]="isRed">
+
+<!-- <label for="">Bold</label>
+<input type="checkbox" [(ngModel)]="isBold" (click)="changeClass()">
+
+<label for="">Italic</label>
+<input type="checkbox" [(ngModel)]="isItalic" (click)="changeClass()">
+
+<p [ngClass]="isClasses">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Possimus neque nam ad dolorum culpa placeat. Quaerat, ratione. Aliquid similique minus doloribus veniam? Ab aliquam harum, aperiam nihil velit officiis! Consectetur.</p> -->
+
+<h3 *ngIf="isRed">Red text</h3>
+<h3 *ngIf="!isRed">Blue text</h3>
+
+<ng-template [ngIf]="isRed">
+    <h3>Red text</h3>
+</ng-template>
+<ng-template [ngIf]="!isRed">
+    <h3>Blue text</h3>
+</ng-template>
+
+
+<ul>
+    <li *ngFor="let city of cities">{{city}}</li>
+</ul>

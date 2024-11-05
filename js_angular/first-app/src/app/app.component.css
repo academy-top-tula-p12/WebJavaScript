@@ -1,0 +1,9 @@
+.img-logo{
+    width: 50px;
+    margin: 10px;
+}
+
+.header-logo{
+    height: 70px;
+    box-shadow: 0 3px 10px darkblue;
+}

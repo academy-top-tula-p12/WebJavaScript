@@ -1,0 +1,15 @@
+h1, h2{
+    font-family: 'Colibri', sans-serif;
+}
+h1{
+    color:blueviolet;
+}
+div{
+    width: 100px;
+    height: 100px;
+    border: black solid 1px;
+}
+
+.colorbox{
+    background-color: aquamarine;
+}

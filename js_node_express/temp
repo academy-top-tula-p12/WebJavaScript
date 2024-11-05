@@ -1,0 +1,3 @@
+{{!-- {{#if this.id == selected_id}}
+                    selected="selected"
+                    {{/if}} --}}

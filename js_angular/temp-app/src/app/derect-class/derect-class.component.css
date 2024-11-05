@@ -1,0 +1,15 @@
+.red_text{
+    color: red;
+}
+
+.blue_text{
+    color: blue;
+}
+
+.bold_text{
+    font-weight: bold;
+}
+
+.italic_text{
+    font-style: italic;
+}
