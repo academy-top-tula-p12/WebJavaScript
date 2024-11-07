@@ -4,10 +4,21 @@ import { FlightData } from './flight-data';
 @Injectable({
   providedIn: 'root'
 })
+
 export class FlightingService {
   url = "http://localhost:4200/";
 
   constructor() { }
+
+  getIdCounter(){
+    let count = 0;
+    function inner(){
+      return ++count;
+    }
+    return inner;
+  }
+
+  getId: any = this.getIdCounter();
 
   getFlightsAll(): FlightData[]{
     return this.flightsList;
@@ -17,9 +28,13 @@ export class FlightingService {
     return this.flightsList.find(f => f.id == id);
   }
 
+  pushFlight(flight: FlightData): void{
+    this.flightsList.push(flight);
+  }
+
   flightsList: FlightData[] = [
     {
-      id: 1,
+      id: this.getId(),
       name: "ASD-098",
       fromCity: "Moscow",
       toCity: "Irkutsk",
@@ -28,7 +43,7 @@ export class FlightingService {
       isActive: true
     },
     {
-      id: 2,
+      id: this.getId(),
       name: "DFG-111",
       fromCity: "St Peterburg",
       toCity: "Kazan",
@@ -37,7 +52,7 @@ export class FlightingService {
       isActive: true
     },
     {
-      id: 3,
+      id: this.getId(),
       name: "RT-665",
       fromCity: "Voroneg",
       toCity: "Tumen",

@@ -15,13 +15,15 @@ export class FlightDetailsComponent {
   route: ActivatedRoute = inject(ActivatedRoute);
 
   flightingService: FlightingService = inject(FlightingService);
-  flight: FlightData;
+  flight!: FlightData;
 
-  constructor(){
+  // constructor(){
+  //   let id = parseInt(this.route.snapshot.params["id"], 10);
+
+  //   this.flight = this.flightingService.getFlightById(id)!;
+  // }
+  ngOnInit(){
     let id = parseInt(this.route.snapshot.params["id"], 10);
-
     this.flight = this.flightingService.getFlightById(id)!;
-    console.log(this.flight);
-    
   }
 }
