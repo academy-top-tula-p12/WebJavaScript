@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <flight-view v-bind="flight"></flight-view>
+        <flight-add></flight-add>
+    </div>
+
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+        let app = Vue.createApp({
+            data(){
+                return {
+                    flight:{
+                        name: "ADQ-565",
+                        fromCity: "Moscow"
+                    }
+                }
+            }
+        });
+
+        let swapData = {
+            title: "Flight App"
+        }
+
+        app.component("flight-view", 
+        {
+            data(){
+                return{
+                    global: swapData,
+                    
+                }
+            },
+            props:[
+                "name", "fromCity"
+            ],
+            template: `<h2>Flight:</h2>
+                        <p>Name: {{name}}</p>
+                        <p>From City: {{fromCity}}</p>`,
+            methods:{
+
+            },
+            computed:{
+
+            }
+        });
+
+        app.component("flight-add", 
+        {
+            template: "<h2>Flight Add:</h2>"
+        });
+        
+        app.mount("#app");
+    </script>
+</body>
+</html>

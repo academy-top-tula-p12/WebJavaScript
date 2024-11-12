@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <fligts_list :flights="flights" ref="viewFlights"></fligts_list>
+        <button v-on:click="toggleView()">View/Hide</button>
+    </div>
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+        // let flight_item_obj = {
+        //     props:{ flight: Object },
+        //     template: `<h1>{{flight.name}}</h1>
+        //                 <h3>{{flight.fromCity}}</h3>
+        //                 <h3>{{flight.toCity}}</h3>`
+        // };
+
+        let app = Vue.createApp({
+            data(){
+                return {
+                    flights:[
+                        {
+                            name: "ASD-098",
+                            fromCity: "Moscow",
+                            toCity: "Voroneg",
+                        },
+                        {
+                            name: "PLI-121",
+                            fromCity: "Novosibirsk",
+                            toCity: "Kazan",
+                        },
+                        {
+                            name: "NMT-98",
+                            fromCity: "Moscow",
+                            toCity: "Irkutsk",
+                        }
+                    ]
+                }
+            },
+            methods:{
+                toggleView: function(){
+                    this.$refs.viewFlights.isVisible = !this.$refs.viewFlights.isVisible;
+                }
+            }
+        });
+
+        app.component("flight_item", {
+            data(){
+                return {
+                    isVisibleFlight: true
+                }
+            },
+            props:{ flight: Object },
+            template: `<div v-if="isVisibleFlight">
+                        <h1>{{flight.name}}</h1>
+                        <h3>{{flight.fromCity}}</h3>
+                        <h3>{{flight.toCity}}</h3>
+                        </div>
+                        <button v-on:click="toggleFlight()">View/Hide Flight</button>`,
+            methods:{
+                toggleFlight(){
+                    this.isVisibleFlight = !this.toggleFlight;
+                }
+            }
+            
+        });
+
+        app.component("fligts_list", {
+            props: ["flights"],
+            data(){
+                return{
+                    isVisible: true
+                }
+            },
+            template: `<div v-if="isVisible">
+                            <flight_item v-for="f in flights" :flight="f"></flight_item>
+                        </div>`
+            // components:{
+            //     "flight_item": flight_item_obj
+            // }
+        });
+
+        app.mount("#app");
+    </script>
+</body>
+</html>

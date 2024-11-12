@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 100px;
+            height: 100px;
+            background-color: crimson;
+            float: left;
+        }
+        input{
+            display: block;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- <input type="text" v-model="backcolor">
+        <input type="number" v-model="margin">
+
+        <div class="box" v-bind:style="styleBox"></div>
+        <div class="box" v-bind:style="styleBox"></div>
+        <div class="box" v-bind:style="styleBox"></div>
+        <div style="clear:both"></div> -->
+
+        <p ref="outText"></p>
+        <button @click="countClicks">++</button>
+        
+    </div>
+
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+        let app = Vue.createApp({
+            data(){
+                return{
+                    backcolor: "crimson",
+                    margin: 0,
+                    countClick: 0
+                }
+            },
+            computed:{
+                styleBox(){
+                    return{
+                        "background-color": this.backcolor,
+                        "margin": this.margin + "px"
+                    }
+                }
+            },
+            methods:{
+                countClicks(){
+                    this.countClick++;
+                    this.$refs.outText.innerText = "Clicks = " + this.countClick;
+                }
+            }
+        });
+        app.mount("#app");
+    </script>
+</body>
+</html>

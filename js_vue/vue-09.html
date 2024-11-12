@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <p>
+            <label for="">Name</label>
+            <input type="text" v-model="employee.name">
+        </p>
+        <p>
+            <label for="">Age</label>
+            <input type="number" v-model.number="employee.age">
+        </p>
+        <user-comp v-bind:employee="employee"></user-comp>
+    </div>
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+        let app = Vue.createApp({
+            data(){
+                return{
+                    employee:{
+                        name: "Bobby",
+                        age: 29
+                    }
+                }
+            }
+        });
+
+        app.component("user-comp", {
+            props: {
+                employee: Object
+            },
+            template:`<div>
+                        <h1>Employee:</h1>
+                        <h3>Name: {{employee.name}}</h3>
+                        <h3>Age: {{employee.age}}</h3>
+                        </div>`
+        });
+
+        app.mount("#app");
+    </script>
+</body>
+</html>

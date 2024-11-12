@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <input type="number" @input="changeDiff" v-bind:value="diff">
+        <button @click="decCounter">-</button>
+        <span style="margin: 0 10px">{{counter}}</span>
+        <button @click="incCounter(), addClickCount()">+</button>
+        <p>Click's count = {{clickCount}}</p>
+    </div>
+
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+        let app = Vue.createApp({
+            data(){
+                return{
+                    counter: 0,
+                    diff: 1,
+                    clickCount: 0
+                }
+            },
+            methods:{
+                addCounter(diff){
+                    this.counter += diff;
+                },
+                incCounter(){
+                    this.addCounter(+this.diff);
+                },
+                decCounter(){
+                    this.addCounter(-+this.diff);
+                },
+                changeDiff(e){
+                    this.diff = e.target.value;
+                },
+                addClickCount(){
+                    this.clickCount++;
+                }
+            }
+        });
+        app.mount("#app");
+    </script>
+</body>
+</html>

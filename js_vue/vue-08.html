@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <counter-a :name="appName" :count_init="appInit"></counter-a>
+        <counter-b></counter-b>
+        <counter-a name="Sammy"></counter-a>
+        <counter-global></counter-global>
+    </div>
+
+
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+
+        let globalData = {
+            globalCount: 0
+        };
+        
+        let app = Vue.createApp({
+            data(){
+                return{
+                        appInit: -10,
+                        appName: "Bobby"
+                    }
+            }
+        });
+
+        app.component("counter-a",{
+            props: {
+                name:{}, 
+                count_init:{
+                    required: false,
+                    type: Number, 
+                    default: 0,
+                    validator: function(value){
+                        return value < 0;
+                    }
+                }
+            },
+            data(props){
+                return {
+                    count: props.count_init,
+                    globalData: globalData
+                }
+            },
+            methods: {
+                incCount: function(){
+                    this.count++;
+                },
+                incGlobal: function(){
+                    this.globalData.globalCount++;
+                }
+            },
+            template: `<h1>Hello {{name}}</h1>
+                        <h1>Local count: {{count}}</h1>
+                        <h1>Global count: {{globalData.globalCount}}</h1>
+                        <button v-on:click="incCount">Inc A</button>
+                        <button v-on:click="incGlobal">Inc Global</button>`
+        });
+
+        app.component("counter-b",{
+            data(){
+                return {
+                    count: 0,
+                    globalData: globalData
+                }
+            },
+            methods: {
+                incCount: function(){
+                    this.count++;
+                },
+                incGlobal: function(){
+                    this.globalData.globalCount++;
+                }
+            },
+            template: `<h1>Local count: {{count}}</h1>
+                        <h1>Global count: {{globalData.globalCount}}</h1>
+                        <button v-on:click="incCount">Inc B</button>
+                        <button v-on:click="incGlobal">Inc Global</button>`
+        });
+
+        app.component("counter-global",{
+            data(){
+                return globalData
+            },
+            methods:{
+                incGlobal: function(){
+                    this.globalCount++;
+                }
+            },
+            template: `<div>
+                        <button v-on:click="incGlobal">Inc Global</button>
+                       </div>`
+        });
+
+        
+
+        app.mount("#app");
+    </script>
+</body>
+</html>

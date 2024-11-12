@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 100px;
+            height: 100px;
+            background-color: aquamarine;
+        }
+        .red{
+            background-color: red;
+        }
+        .blue{
+            background-color: blue;
+        }
+        .green{
+            background-color: green;
+        }
+        .b-blue{
+            border: blue 5px solid;
+        }
+        .b-red{
+            border: red 5px solid;
+        }
+        .b-green{
+            border: green 5px solid;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- <div class="box" v-bind:class="{red: isRed, border: isBorder}" @click="redToggle"></div> -->
+         <div class="box" v-bind:class="backName, borderName"></div>
+        <button @click="borderToggle">{{borderTitle}}</button>
+        <input type="text" v-model="backName">
+        <input type="text" v-model="borderName">
+    </div>
+
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+        let app = Vue.createApp({
+            data(){
+                return{
+                    isRed: false,
+                    isBorder: false,
+                    borderTitle: "View border",
+                    backName: "",
+                    borderName: ""
+                }
+            },
+            methods:{
+                redToggle(){
+                    this.isRed = !this.isRed;
+                },
+                borderToggle(){
+                    this.isBorder = !this.isBorder;
+                    if(this.borderTitle == "View border")
+                        this.borderTitle = "Hide border";
+                    else
+                        this.borderTitle = "View border";
+                }
+            }
+        });
+        app.mount("#app");
+    </script>
+</body>
+</html>

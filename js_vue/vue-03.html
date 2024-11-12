@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- <input type="text" v-model="name">
+        <p>Hello {{name}}</p> -->
+        <!-- <label for="width">Width: </label>
+        <input type="number" name="width" v-model="width">
+        <label for="height">Height: </label>
+        <input type="number" name="height" v-model="height">
+        <p>Square = {{square}}</p> -->
+        <input type="text" v-model="first_name">
+        <input type="text" v-model="middle_name">
+        <input type="text" v-model="last_name">
+        <p>{{full_name}}</p>
+    </div>
+
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+        let app = Vue.createApp({
+            data(){
+                return{
+                    name: "Bobby",
+                    width: 0,
+                    height: 0,
+                    first_name: "",
+                    middle_name: "",
+                    last_name: "",
+                }
+            },
+            computed:{
+                square: function(){
+                    return this.width * this.height;
+                },
+                full_name: {
+                    get: function(){
+                        return this.last_name + " " 
+                                + this.first_name + " "
+                                + this.middle_name;
+                    },
+                    set: function(newName){
+                        let names = newName.split(" ");
+                        first_name = names[1];
+                        last_name = names[0];
+                        middle_name = names[2];
+                    }
+                }
+            },
+            methods:{
+
+            }
+        });
+        app.mount("#app");
+    </script>
+</body>
+</html>

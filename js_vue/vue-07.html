@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <component-a></component-a>
+        <component-b></component-b>
+        <component-c></component-c>
+        <component-d></component-d>
+    </div>
+
+
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+        let componentC = {
+            data(){
+                return {
+                    state: "State C"
+                }
+            },
+            template: "<h1>Hello {{state}}</h1>"
+        }
+
+        let componentD = {
+            data(){
+                return {
+                    count: 0
+                }
+            },
+            methods: {
+                incCount: function(){
+                    this.count++;
+                }
+            },
+            template: `<h1>D Counts: {{count}}</h1>
+                        <button v-on:click="incCount">Inc</button>`
+        }
+
+        let app = Vue.createApp({
+            components: {
+                "component-c": componentC,
+                "component-d": componentD,
+            }
+        });
+
+        app.component("component-a",{
+            data(){
+                return {
+                    state: "State A"
+                }
+            },
+            template: "<h1>Hello {{state}}</h1>"
+        });
+
+        app.component("component-b",{
+            data(){
+                return {
+                    count: 0
+                }
+            },
+            methods: {
+                incCount: function(){
+                    this.count++;
+                }
+            },
+            template: `<h1>B Counts: {{count}}</h1>
+                        <button v-on:click="incCount">Inc</button>`
+        });
+
+        
+
+        app.mount("#app");
+    </script>
+</body>
+</html>

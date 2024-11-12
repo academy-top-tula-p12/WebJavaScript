@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- <p>Hello {{name}}</p>
+        <p>You age: {{age}}</p>
+        <p>You phone: {{phone}}</p> -->
+        <!-- <p>{{ hello() }}</p>
+        <p>{{name}}</p>
+        <p v-text="age"></p>
+        <p>{{ viewAge() }}</p>
+        <p>{{(age < 16)?'Ребенок':'Взрослый'}}</p>
+        <p>{{ viewPhone() }}</p>
+        <button v-on:click="ageInc">+</button>
+        <button v-on:click="ageDec">-</button>
+        <a v-bind:href="searchLink">{{searchName}}</a> -->
+
+        <p>{{header}}</p>
+        <p v-text="header"></p>
+        <p v-html="header"></p>
+        <!-- <input type="text" v-on:input="inputName"> -->
+    </div>
+    
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+        // Vue.createApp({
+        //     data(){
+        //         return {
+        //             name: "Bobby"
+        //         }
+        //     },
+        //     methods:{
+        //         inputName(e){
+        //             this.name = e.target.value;
+        //         }
+        //     }
+        // }).mount("#app");
+
+        let vueApp = Vue.createApp({
+            data(){
+                return {
+                    name: "Bobby",
+                    age: 29,
+                    phone: "8 999 555-33-11",
+                    searchName: "Yandex",
+                    searchLink: "https://ya.ru",
+                    header: "<h1>Hello world</h1>"
+                }
+            },
+            methods:{
+                inputName(e){
+                    this.name = e.target.value;
+                },
+                hello(){
+                    return "Hello " + this.name;
+                },
+                viewAge(){
+                    return "You age: " + this.age;
+                },
+                viewPhone(){
+                    return "You phone: " + this.phone;
+                },
+                addAge(diff = 1){
+                    this.age += diff;
+                },
+                ageInc(){
+                    this.addAge();
+                },
+                ageDec(){
+                    this.addAge(-1);
+                }
+            }
+        });
+        vueApp.mount("#app");
+    </script>
+</body>
+</html>
