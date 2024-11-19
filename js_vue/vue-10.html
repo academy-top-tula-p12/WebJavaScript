@@ -63,7 +63,7 @@
                         <button v-on:click="toggleFlight()">View/Hide Flight</button>`,
             methods:{
                 toggleFlight(){
-                    this.isVisibleFlight = !this.toggleFlight;
+                    this.isVisibleFlight = !this.isVisibleFlight;
                 }
             }
             
@@ -84,7 +84,7 @@
             // }
         });
 
-        app.mount("#app");
+        let vm = app.mount("#app");
     </script>
 </body>
 </html>

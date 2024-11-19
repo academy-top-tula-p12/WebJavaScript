@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h2>Flights list:</h2>
+        <flight_form :flights="flights" :flight="flight"></flight_form>
+        <!-- <fligts_list :flights="flights"></fligts_list> -->
+
+        <div>
+            <flight_item v-for="(flight, index) in flights" 
+                        :flight="flight"
+                        :index="index"
+                        :key="index"
+                        v-on:flightdeleted="deleteFlight"
+                        v-on:flightedited="editFlight">
+            </flight_item>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+        
+
+        let app = Vue.createApp({
+            data(){
+                return {
+                    flights:[
+                        {
+                            name: "ASD-098",
+                            fromCity: "Moscow",
+                            toCity: "Voroneg",
+                        },
+                        {
+                            name: "PLI-121",
+                            fromCity: "Novosibirsk",
+                            toCity: "Kazan",
+                        },
+                        {
+                            name: "NMT-98",
+                            fromCity: "Moscow",
+                            toCity: "Irkutsk",
+                        }
+                    ],
+                    flight: {}
+                }
+            },
+            methods:{
+                editFlight(index){
+                    //console.log("event handler");
+                    this.flight = this.flights[index];
+                    console.log(this.flight);
+                }
+            }
+        });
+
+        app.component("flight_form",{
+            props: ["flights", "flight"],
+            data(props){
+                return{
+                    flight: {
+                        name: props.flight.name,
+                        fromCity: props.fromCity,
+                        toCity: props.toCity
+                    }
+                }
+            },
+            template: `<div>
+                            <p>
+                                <label>Name</label>
+                                <input type="text" v-model="flight.name">
+                            </p>
+                            <p>
+                                <label>From City</label>
+                                <input type="text" v-model="flight.fromCity">
+                            </p>
+                            <p>
+                                <label>To City</label>
+                                <input type="text" v-model="flight.toCity">
+                            </p>
+                            <button v-on:click="flightAdd">Add Flight</button>
+                        </div>`,
+            methods: {
+                flightAdd(){
+                    // this.flights.push(this.flight);
+                    this.flights.push(
+                        {
+                            name: this.flight.name,
+                            fromCity: this.flight.fromCity,
+                            toCity: this.flight.toCity
+                        });
+                    this.flight = new {};
+                    this.flight.name = "";
+                }
+            }
+        });
+
+        app.component("fligts_list", {
+            props: ["flights"],
+            template: `<div>
+                            <flight_item v-for="(flight, index) in flights" 
+                                        :flight="flight"
+                                        :index="index"
+                                        :key="index"
+                                        v-on:flightdeleted="deleteFlight"
+                                        v-on:flightedited="editFlight">
+                            </flight_item>
+                        </div>`,
+            methods:{
+                deleteFlight(index){
+                    this.flights.splice(index, 1);
+                }
+            }
+        });
+
+        app.component("flight_item", {
+            props: [ "flight", "index" ],
+
+            template: `<div>
+                        <h1>{{flight.name}}</h1>
+                        <h3>{{flight.fromCity}}</h3>
+                        <h3>{{flight.toCity}}</h3>
+                        </div>
+                        <button v-on:click="deleteFlightEvent(index)">Delete Flight</button>
+                        <button v-on:click="editFlightEvent(index)">Edit Flight</button>`,
+            
+            methods:{
+                deleteFlightEvent(index){
+                    this.$emit("flightdeleted", index);
+                },
+                editFlightEvent(index){
+                    this.$emit("flightedited", index);
+                }
+            }
+            
+        });
+
+        app.mount("#app");
+    </script>
+</body>
+</html>
