@@ -30,7 +30,6 @@ function Header({menuMain} : {menuMain: MenuItem[]}){
           className="
             ud-header
             bg-transparent
-            absolute
             top-0
             left-0
             z-40
