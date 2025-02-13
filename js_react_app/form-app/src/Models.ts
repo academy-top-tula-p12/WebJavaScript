@@ -12,7 +12,7 @@ export interface Position{
 export interface Employee{
     id: number,
     name: string,
-    birthDate: Date,
+    birthDate: string,
     company: Company,
     position: Position,
 }

@@ -1,7 +1,14 @@
-import { employees, companies, position } from './Data';
-import { Employee, Company, Position } from './Models';
+import { employeesSlice } from "./store/employee.slice";
+import { useAppSelector } from "./store";
+import { memo } from "react";
 
-function EmployeeRow({ employee }: {employee: Employee}){
+const EmployeeRow = memo( function EmployeRow({
+  employeeId 
+} : {
+  employeeId: number
+}) {
+    const employee = useAppSelector(state => employeesSlice.selectors.selectEmployee(state, employeeId));
+
     return(
       <tr>
         <td>{employee.name}</td>
@@ -11,25 +18,27 @@ function EmployeeRow({ employee }: {employee: Employee}){
         <td>{employee.position.salary}</td>
       </tr>
     )
-  }
+  });
 
 function Content(){
-    let employeeList = employees;
+    let employeeListIds = useAppSelector(employeesSlice.selectors.selectEmployeesIds);
     return (
         <table className='table-auto w-full mx-10 text-xl'>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Birth Date</th>
-          <th>Company</th>
-          <th>Position</th>
-          <th>Salary</th>
-        </tr>
-      </thead>
-      <tbody>
-        { employeeList.map((e, index) => <EmployeeRow employee={e} key={index}/>) }
-      </tbody>
-    </table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Birth Date</th>
+              <th>Company</th>
+              <th>Position</th>
+              <th>Salary</th>
+            </tr>
+          </thead>
+          <tbody>
+            { employeeListIds.map( id => (
+              <EmployeeRow employeeId={id} key={id} />
+            )) }
+          </tbody>
+        </table>
     )
 }
 
