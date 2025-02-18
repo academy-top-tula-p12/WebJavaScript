@@ -9,10 +9,16 @@ export interface Position{
     salary: number,
 }
 
+export interface AppDate{
+    day: number,
+    month: number,
+    year: number,
+}
+
 export interface Employee{
     id: number,
     name: string,
-    birthDate: string,
-    company: Company,
-    position: Position,
+    birthDate: AppDate,
+    companyId: number,
+    positionId: number,
 }

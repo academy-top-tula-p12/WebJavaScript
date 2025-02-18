@@ -1,29 +1,48 @@
-import { memo, useState } from "react";
-import { useAppDispatch } from "./store";
+import { memo, useEffect, useState } from "react";
+import { useAppDispatch, useAppSelector } from "./store";
 import { employeesSlice } from "./store/employee.slice";
 import { companies, positions } from "./Data";
 import { Company, Position } from "./store/types/Models";
+
 import CompanyItem from "./CompanyItem";
 import PositionItem from "./PositionItem";
 
-export default function AddEmployee(){
+export default function EditEmployee({employeeId} : {employeeId: number}){
+    const employee = useAppSelector(
+        (state) => employeesSlice.selectors
+                                 .selectEmployee(state, employeeId));
+
     const [name, setName] = useState("");
     // const [birthDate, setBirthDate] = useState(new Date());
     const [companyId, setCompanyId] = useState(0);
     const [positionId, setPositionId] = useState(0);
-    
+
     const dispatch = useAppDispatch();
 
-    function addClickHandle(){
+    useEffect(() => {
+        setName(employee.name);
+        setCompanyId(employee.company!.id);
+        setPositionId(employee.position!.id);
+    }, [employee]);
+
+    function saveClickHandler(){
         const company = companies.find(c => c.id === companyId);
         const position = positions.find(p => p.id === positionId);
 
-        dispatch(employeesSlice.actions.add({
-            name: name,
-            // birthDate: birthDate,
-            company: company,
-            position: position,
+        dispatch(employeesSlice.actions.edit({
+            employee: {
+                id: employeeId,
+                name: name,
+                company: company,
+                position: position
+            }
         }));
+
+        dispatch(employeesSlice.actions.select({ employeeId: undefined }));
+    }
+
+    function cancelClickHandler(){
+        dispatch(employeesSlice.actions.select({ employeeId: undefined }));
     }
 
     return (
@@ -60,10 +79,16 @@ export default function AddEmployee(){
                     }
                 </select>
             </div>
-            <div className="m-10 border-solid border-gray-500 border-1">
+            <div className="m-10">
                 <button type="button"
-                        onClick={addClickHandle}>
-                    Add Employee
+                        className="mx-10"
+                        onClick={saveClickHandler}
+                        >
+                    Save Employee
+                </button>
+                <button type="button"
+                        onClick={cancelClickHandler}>
+                    Cancel
                 </button>
             </div>
         </form>

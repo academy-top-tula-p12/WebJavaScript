@@ -1,5 +1,4 @@
-import './App.css'
-import { MenuItem } from './ServiceData';
+import { MenuItem } from '../store/data/ServiceData';
 import { NavLink } from 'react-router';
 
 function MenuItemCreate({menuItem} : { menuItem: MenuItem }){

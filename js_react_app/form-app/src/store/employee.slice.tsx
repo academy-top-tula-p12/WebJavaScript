@@ -1,7 +1,6 @@
-import { Employee, Company, Position } from "../Models";
-import { employees, companies, positions } from "../Data";
+import { Employee, AppDate } from "./types/Models";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { act } from "react";
+import { employees } from "./data/Data";
 
 type EmployeesState = {
     items: Record<number, Employee>,
@@ -33,11 +32,11 @@ export const employeesSlice = createSlice({
         },
         add: (state, action: PayloadAction<{
             name: string,
-            birthDate: Date,
-            company: Company,
-            position: Position,
+            birthDate: AppDate
+            companyId: number,
+            positionId: number,
         }>) => {
-            const id = state.ids.length + 1;
+            const id = state.ids.reduce((prev, next) => (prev > next) ? prev : next) + 1; //state.ids.length + 1;
             state.ids.push(id);
             state.items[id] = {
                 id,
@@ -51,8 +50,8 @@ export const employeesSlice = createSlice({
         delete: (state, action: PayloadAction<{employeeId: number}>) => {
             const { employeeId } = action.payload;
             const idIndex = state.ids.findIndex(id => id === employeeId);
-            state.ids.slice(idIndex, 1);
+            state.ids.splice(idIndex, 1);
             delete state.items[employeeId];
         }
     }
-})
+});
