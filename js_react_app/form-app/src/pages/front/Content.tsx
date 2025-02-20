@@ -9,7 +9,7 @@ function Content(){
           <thead>
             <tr>
               <th>Name</th>
-              {/* <th>Birth Date</th> */}
+              <th>Birth Date</th>
               <th>Company</th>
               <th>Position</th>
               <th>Salary</th>
