@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { employees } from "./prisma_crud";
-import EmployeeItem from "./components/employee_item";
+import EmployeeItem from "../components/employee_item";
 import { log } from "console";
 
 export default function Home() {
@@ -23,7 +23,7 @@ export default function Home() {
           <tbody>
             { employees.map( employee => (
               <tr>
-                <EmployeeItem employee={employee} key={employee.id} />
+                <EmployeeItem employee= {employee} key={employee.id} />
               </tr>
             )) }
           </tbody>

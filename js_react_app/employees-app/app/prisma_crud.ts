@@ -1,6 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 
-const prisma = new PrismaClient();
+export const prisma = new PrismaClient();
 
 export const employees = await prisma.employee.findMany({
     include: {
@@ -8,5 +8,7 @@ export const employees = await prisma.employee.findMany({
         position: true
       },
 });
+
+export const companies = await prisma.company.findMany();
 
 
