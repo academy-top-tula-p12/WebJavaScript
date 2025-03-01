@@ -1,6 +1,12 @@
-import { prisma } from "@/app/prisma_crud"
+import { prisma } from "@/lib/prisma"
 
-export async function POST(request: Request, response: Response){
+
+export async function GET(){
+    const companies = await prisma.company.findMany();
+    return Response.json({ companies });
+}
+
+export async function POST(request: Request){
     const { title } = await request.json();
 
     const result = await prisma.company.create({
@@ -10,12 +16,4 @@ export async function POST(request: Request, response: Response){
     });
 
     return Response.json({ result });
-}
-
-export async function DELETE(request: Request) {
-    
-}
-
-export async function PUT(request: Request) {
-    
 }

@@ -1,15 +1,22 @@
 import Image from "next/image";
-import { employees } from "./prisma_crud";
+import { prisma } from "../lib/prisma";
 import EmployeeItem from "../components/employee_item";
 import { log } from "console";
+import { Employee } from "@/prisma/types";
 
-export default function Home() {
+export default async function Home() {
 
-  console.log(employees);
+  const employees = await prisma.employee.findMany({
+    include: {
+        company: true,
+        position: true
+      },
+  });
+  
 
   return (
     <div className="">
-      <main className="">
+      {/* <main className="">
       <table className='table-auto w-full mx-10 text-xl'>
           <thead>
             <tr>
@@ -21,14 +28,14 @@ export default function Home() {
             </tr>
           </thead>
           <tbody>
-            { employees.map( employee => (
+            { employees.map( (employee: Employee)  => (
               <tr>
-                <EmployeeItem employee= {employee} key={employee.id} />
+                <EmployeeItem employee={ employee } key={employee.id} />
               </tr>
             )) }
           </tbody>
         </table>
-      </main>
+      </main> */}
     </div>
   );
 }

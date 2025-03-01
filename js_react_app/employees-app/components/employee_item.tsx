@@ -1,16 +1,7 @@
+import { Company, Employee } from "@/prisma/types";
 
-function EmployeeItem( { employee }: 
-        { employee : {
-                id: number,
-                name: string,
-                birthDate: Date,
-                company: { title: string },
-                position: {
-                    title: string,
-                    salary: number
-                }
-            }
-        })
+
+function EmployeeItem( employee: Employee )
 {
     return (
         <>

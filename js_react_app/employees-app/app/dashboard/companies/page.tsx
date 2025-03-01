@@ -1,34 +1,27 @@
-import { prisma } from "@/app/prisma_crud";
-import CompanyAdd from "./components/companyadd";
 import Link from "next/link";
+import Form from "next/form";
 import { FormEvent } from "react";
+import { Company } from "@/prisma/types";
+import getCompanies from "@/actions/companies/getCompanies";
+import deleteCompany from "@/actions/companies/deleteCompany";
 
 function CompanyDashboardItem(
-    { company } : { company: {
-        id: number,
-        title: string
-    }}){
-
-        const deleteHandler = async(e: FormEvent) => {
-            e.preventDefault();
-            //
-        }
-        
+    { company }: { company : Company } ) { 
         return (
             <tr>
                 <td>{ company.title }</td>
                 <td>
-                    <Link href={`/dasboard/companies/${company.id}`}>
+                    <Link href={`/dashboard/companies/${company.id}`}>
                         Edit
                     </Link>
                 </td>
                 <td>
-                    <form onSubmit={deleteHandler}>
+                    <Form action={ deleteCompany }>
                         <input type="hidden" name="id" value={company.id}/>
-                        <button type="button">
+                        <button type="submit">
                             Delete
                         </button>    
-                    </form>
+                    </Form>
                     
                 </td>
             </tr>
@@ -36,14 +29,16 @@ function CompanyDashboardItem(
     };
 
 export default async function CompaniesDashboard(){
-    const companies = await prisma.company.findMany();
+    
+    const { companies } = await getCompanies();
 
     return (
         <>
+            <h2>Company dashboard</h2>
             <div>
-                {
-                    <CompanyAdd />
-                }
+                <Link href="/dashboard/companies/create">
+                    Create Company
+                </Link>
             </div>
             <table className='table-auto w-full mx-10 text-xl'>
                 <thead>
@@ -54,7 +49,7 @@ export default async function CompaniesDashboard(){
                     </tr>
                 </thead>
                 <tbody>
-                    { companies.map( company => (
+                    { companies.map( (company: Company) => (
                         <CompanyDashboardItem company={company} key={company.id} />
                     )) }
                 </tbody>
