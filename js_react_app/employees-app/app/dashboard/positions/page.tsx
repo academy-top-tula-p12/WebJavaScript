@@ -1,6 +1,5 @@
 import Link from "next/link";
 import Form from "next/form";
-import { FormEvent } from "react";
 import { Position } from "@/prisma/types";
 import getPositions from "@/actions/positions/getPositions";
 import deletePosition from "@/actions/positions/deletePosition";
@@ -45,6 +44,7 @@ export default async function PositionsDashboard(){
                 <thead>
                     <tr>
                         <th>Title</th>
+                        <th>Salary</th>
                         <th></th>
                         <th></th>
                     </tr>

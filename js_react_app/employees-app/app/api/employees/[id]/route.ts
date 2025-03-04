@@ -6,12 +6,12 @@ export async function DELETE(
     { params }: { params: Promise<{id: string}>}
     ) {
     const { id } = await params;
-    const companyDeleted = await prisma.company.delete({
+    const employeeDeleted = await prisma.employee.delete({
         where:{
             id: parseInt(id)
         }
     });
-    return Response.json(companyDeleted);
+    return Response.json(employeeDeleted);
 }
 
 export async function GET(
@@ -19,13 +19,13 @@ export async function GET(
     { params } : { params: Promise<{ id: string }>}
 ){
     const { id } = await params;
-    const company = await prisma.company.findUnique({
+    const employee = await prisma.employee.findUnique({
         where:{
             id: parseInt(id),
         }
     });
 
-    return Response.json({ company });
+    return Response.json({ employee });
 }
 
 export async function PUT(
@@ -33,16 +33,16 @@ export async function PUT(
     { params } : { params: Promise<{ id: string }>}
 ){
     const { id } = await params;
-    const { title } = await request.json();
+    const employeeJson = await request.json();
 
-    const company = await prisma.company.update({
+    const employee = await prisma.employee.update({
         where:{
             id: parseInt(id),
         },
         data: {
-            title: title,
+            ...employeeJson
         }
     });
 
-    return Response.json({ company });
+    return Response.json({ employee });
 }

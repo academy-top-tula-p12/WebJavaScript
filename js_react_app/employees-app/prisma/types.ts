@@ -12,7 +12,7 @@ export type Position = {
 export type Employee = {
     id: number;
     name: string;
-    birthDate: Date;
+    birthDate: string;
     company: { 
         title: string;
     };

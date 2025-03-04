@@ -30,8 +30,8 @@ model Employee{
     id Int @id @default(autoincrement())
     name String
     birthDate DateTime
-    company Company @relation(fields: [companyId], references: [id])
-    companyId Int
+    company Company? @relation(fields: [companyId], references: [id], onDelete: SetNull)
+    companyId Int?
     position Position @relation(fields: [positionId], references: [id])
     positionId Int
 }
